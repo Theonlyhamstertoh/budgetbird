@@ -77,93 +77,39 @@ User Stories
 9.  As a budgeter, I want to be able to see how much money I’ve saved in the past day, week, or month so that I can see if I am on the right track in saving money.
 10. As a budgeter, I want to be able to manage my spending equally on various subjects so that I can live comfortably and not have to face any financial crisis
 
-Use Case: Adding a new expense to the budget tracker
+| Seq# | Actor's Action                                                                          | System's Response                                                                          |
+| ---- | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| 1    | User selects "add new expense"                                                          |                                                                                            |
+| 2    | User adds new expense to the budget tracker (Groceries, utilities, rent, entertainment) | System provides an interface to input recurring expenses and checks submitted information. |
+| 3    | Clicks "save"                                                                           |                                                                                            |
+| 4    |                                                                                         | Runs checks in the submitted information                                                   |
+| 5    |                                                                                         | Checks are successful                                                                      |
+| 6    |                                                                                         | Saves submitted information in banks/budget database                                       |
 
-Identifier
-UC- 003
-Purpose
-Allows users to input new expenses into the budget tracker
-Requirements
-User Story #4
-Development Risks
-Ensuring data security and integrity when handling financial information
-Pre-conditions
-User must be logged into the budget tracker application
-Post-conditions
-The newly added expense is successfully recorded in the user’s budget tracker
+| Seq# | Actor's Action                                             | System's Response                                                                                                           |
+| ---- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| 1    | User exceeds expense budget limits for specific categories |                                                                                                                             |
+| 2    | User re-enters expense budget for specific categories      | System sends notification to alert the user of the exceeded budget limits, prompts them to review and adjust their spending |
+| 3    | Clicks "save"                                              |                                                                                                                             |
+| 4    |                                                            | System checks to see if re-submitted information meets the required limits.                                                 |
+| 5    |                                                            | Checks are successful                                                                                                       |
+| 6    |                                                            | Saves submitted information in the banks/budget database                                                                    |
 
-Table 1: Typical Course of Action
-Seq#
-Actor’s Action
-System’s Response
-1
-User selects “add new expense”
-
-2
-User adds new expense to the budget tracker (Groceries, utilities, rent, entertainment)
-System provides an interface to input recurring expenses and checks submitted information.
-3
-Clicks “save”
-
-4
-
-Runs checks in the submitted information
-5
-
-Checks are successful
-6
-
-Saves submitted information in banks/budget database
-
-Table 2: Alternate Course of Action
-Seq#
-Actor’s Action
-System’s Response
-1
-User exceeds expense budget limits for specific categories
-
-2
-User re-enters expense budget for specific categories
-System sends notification to alert the user of the exceeded budget limits, prompts them to review and adjust their spending
-3
-Clicks “save”
-
-4
-
-System checks to see if re-submitted information meets the required limits.
-5
-
-Checks are successful
-6
-
-Saves submitted information in the banks/budget database
-
-Table 3: Exceptional Course of Action
-Seq#
-Actor’s Action
-System’s Response
-1
-User attempts to add an expense without specifying a category
-
-2
-Adds an expense with the specified category
-System prompts the user to select or create a category before proceeding with adding the expense
-3
-Clicks “save”
-
-4
-
-System checks to see if re-submitted information meets the required category.
-5
-
-Checks are successful
-6
-
-Saves submitted information in the banks/budget database
+| Seq# | Actor's Action                                                | System's Response                                                                                |
+| ---- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| 1    | User attempts to add an expense without specifying a category |                                                                                                  |
+| 2    | Adds an expense with the specified category                   | System prompts the user to select or create a category before proceeding with adding the expense |
+| 3    | Clicks "save"                                                 |                                                                                                  |
+| 4    |                                                               | System checks to see if re-submitted information meets the required category.                    |
+| 5    |                                                               | Checks are successful                                                                            |
+| 6    |                                                               | Saves submitted information in the banks/budget database                                         |
 
 System Architecture
 (Describe the high-level design of the software.)
 
-Components 4. Frontend: Web app built with React, NextJS, TailwindCSS 5. Backend: API built with Vercel, NextJS 6. Database: Supabase PostgreSQL 7. Authentication: Supabase Authentication for login/signup
+Components
 
-Deployment Diagram
+1. Frontend: Web app built with React, NextJS, TailwindCSS
+2. Backend: API built with Vercel, NextJS
+3. Database: Supabase PostgreSQL
+4. Authentication: Supabase Authentication for login/signup
