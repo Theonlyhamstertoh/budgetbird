@@ -1,10 +1,10 @@
 "use client";
-import { login, signup } from "@/actions/login.action";
-import { GoogleIcon } from "@/components/social-icons/icons";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
+import { login, signup } from "@/src/actions/login.action";
+import { GoogleIcon } from "@/src/components/social-icons/icons";
+import { Button, buttonVariants } from "@/src/components/ui/button";
+import { Input } from "@/src/components/ui/input";
+import { Label } from "@/src/components/ui/label";
+import { cn } from "@/src/lib/utils";
 import { BirdIcon, BusIcon, CatIcon, Loader2Icon } from "lucide-react";
 import { useState } from "react";
 

@@ -4,7 +4,7 @@ import { createLinkToken } from "../actions";
 import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess } from "react-plaid-link";
 import { LinkTokenCreateResponse } from "plaid";
 import { cookies } from "next/headers";
-import { SimplePlaidLink } from "@/components/SimplePlaidLink";
+import { SimplePlaidLink } from "@/src/components/SimplePlaidLink";
 
 export default async function BudgetApp() {
     // if (cookies().get("plaid_expiration"))

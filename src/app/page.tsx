@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils";
+import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { BlurImage } from "@/components/BlurImage";
-import { supabase } from "@/lib/supabase";
+import { BlurImage } from "@/src/components/BlurImage";
+import { supabase } from "@/src/lib/supabase";
 
 export default function Gallery() {
     const setNewView = async () => {

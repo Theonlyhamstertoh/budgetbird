@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { hanken_grotesk, ibm_plex_mono, manrope } from "./fonts";
+import { plus_jakarta_sans } from "./fonts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={manrope.className}>{children}</body>
+            <body className={plus_jakarta_sans.className}>{children}</body>
         </html>
     );
 }

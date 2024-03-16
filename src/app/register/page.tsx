@@ -1,11 +1,11 @@
 "use client";
-import { login, signup } from "@/actions/login.action";
-import { AuthMode, UserAuthForm } from "@/components/auth-form";
-import { GoogleIcon } from "@/components/social-icons/icons";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
+import { login, signup } from "@/src/actions/login.action";
+import { AuthMode, UserAuthForm } from "@/src/components/auth-form";
+import { GoogleIcon } from "@/src/components/social-icons/icons";
+import { Button, buttonVariants } from "@/src/components/ui/button";
+import { Input } from "@/src/components/ui/input";
+import { Label } from "@/src/components/ui/label";
+import { cn } from "@/src/lib/utils";
 import { BirdIcon, BusIcon, CatIcon, Loader2Icon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -38,7 +38,7 @@ export default function LoginPage() {
                     Login
                 </Link>
                 <div className="relative hidden h-full flex-col bg-muted p-10 text-secondary-foreground lg:flex dark:border-r">
-                    <div className="absolute inset-0 bg-amber-300" />
+                    <div className="absolute inset-0 bg-emerald-300" />
                     <div className="relative z-20 flex items-center text-lg font-medium">
                         <BirdIcon className="mr-2 h-6 w-6" />
                         BudgetBird

@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess } from "react-plaid-link";
 import { LinkTokenCreateResponse } from "plaid";
 import { cookies } from "next/headers";
-import { exchangePublicToken } from "@/app/actions";
+import { exchangePublicToken } from "@/src/app/actions";
 
 export const SimplePlaidLink = ({ token }: { token: string }) => {
     console.log(token);
