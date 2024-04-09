@@ -32,7 +32,10 @@ const config = {
                     "900": "#594035",
                     "950": "#2f201b",
                 },
-
+                emerald: {
+                    400: "#34D399",
+                    900: "#064E3B",
+                },
                 primary: {
                     DEFAULT: "hsl(var(--primary))",
                     foreground: "hsl(var(--primary-foreground))",
