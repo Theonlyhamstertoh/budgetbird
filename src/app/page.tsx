@@ -6,6 +6,9 @@ import { createClient } from "@supabase/supabase-js";
 import { BlurImage } from "@/src/components/ui/BlurImage";
 import { supabase } from "@/src/lib/supabase";
 import InputField from "../components/input-field";
+import BudgetBird from "../components/budget-bird";
+import CompletionPage from "./onboard/completion/page";
+
 
 // function Button() {
 //     return (
@@ -31,6 +34,7 @@ export default function HomePage() {
             <div className="heading">
                 <h2 className="text-2xl">Let's Start Setting Up Your Budget</h2>
             </div>
+            <BudgetBird />
             {/* Coin Money  */}
             <Image src="/coin-money.png" alt="Coin And Money " width="200" height="200" />
             <p className="text-black text-lg">What is your income and savings?</p>
@@ -40,6 +44,7 @@ export default function HomePage() {
             {/* <div className="" */}
             <button className="text-black bg-white  p-5 rounded cursor-pointer float-right">Save and Continue</button>
         </div>
+       
     );
 }
 
