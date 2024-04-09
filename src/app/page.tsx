@@ -6,7 +6,8 @@ import { createClient } from "@supabase/supabase-js";
 import { BlurImage } from "@/src/components/ui/BlurImage";
 import { supabase } from "@/src/lib/supabase";
 import InputField from "../components/input-field";
-
+import DashboardSidebar from "../components/dashboard-bar";
+import OnboardingBar from "../components/onboard-bar";
 // function Button() {
 //     return (
 
@@ -22,12 +23,12 @@ export default function HomePage() {
     return (
         <div className="bg-[#FAF8F5] h-screen w-full space-y-2">
             {/* Logo + BudgetBird */}
-            {/* <img src="/bird-logo.png" /> */}
+            <img src="/bird-logo.png" />
             <div>
                 <Image src="/bird-logo.png" alt="BudgetBird" width="30" height="30" />
                 <span>BudgetBird</span>
             </div>
-            {/* Header (Let's Start Setting Up Your Budget) */}
+            Header (Let's Start Setting Up Your Budget)
             <div className="heading">
                 <h2 className="text-2xl">Let's Start Setting Up Your Budget</h2>
             </div>
@@ -37,8 +38,10 @@ export default function HomePage() {
             <div className="bg-gray-200 h-10 w-60 my-2"></div>
             <div className="bg-gray-200 h-10 w-60 my-2"></div>
             <InputField label="poop" icon="/bird-logo.png" placeholder="2000" />
-            {/* <div className="" */}
+            <div className=""
             <button className="text-black bg-white  p-5 rounded cursor-pointer float-right">Save and Continue</button>
+            <DashboardSidebar/>
+            <OnboardingBar prevHref="" nextHref=""/>
         </div>
     );
 }
