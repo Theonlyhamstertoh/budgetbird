@@ -6,6 +6,7 @@ import { createClient } from "@supabase/supabase-js";
 // import { BlurImage } from "@/src/components/ui/BlurImage";
 // import { supabase } from "@/src/lib/supabase";
 import InputField from "../components/input-field";
+import BudgetBird from "../components/budget-bird";
 import DashboardSidebar from "../components/dashboard-bar";
 import OnboardingBar from "../components/onboard-bar";
 import OverviewCard from "../components/transaction/overview-card";
@@ -21,6 +22,7 @@ import AddCategoryButton from "../components/category-add-button";
 // }
 
 export default function HomePage() {
+
 
   function onClickHandler() {}
   return (
