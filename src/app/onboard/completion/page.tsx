@@ -11,7 +11,16 @@ function CompletionPage() {
     
         {/*  try click source control on the left sidebar*/}
 
+        {/* lets just do it through terminal  */}
+
+        {/* so lets add all files, "git add ."  */}
+        {/* now lets verify it by git status, this will show all added changes */}
+        {/* hmm, it looks like we made a commit */}
         {/* hmm it might need to be added */}
+
+        {/* lets do git branch raquel to create your own branch */}
+        then navigate it git checkout raquel
+        {/* now lets git add . again  */}
         <BudgetBird />
         {/* // You are all set! */}
         <div className=" text-xl font-bold   my-4">You are all set!</div>
