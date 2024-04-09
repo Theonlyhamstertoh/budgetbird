@@ -3,9 +3,9 @@ import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
-import { BlurImage } from "@/src/components/ui/BlurImage";
-import { supabase } from "@/src/lib/supabase";
 import InputField from "../components/input-field";
+import Button from "../components/button";
+import Button, { GreenButton } from "../components/button";
 
 // function Button() {
 //     return (
@@ -39,6 +39,8 @@ export default function HomePage() {
             <InputField label="poop" icon="/bird-logo.png" placeholder="2000" />
             {/* <div className="" */}
             <button className="text-black bg-white  p-5 rounded cursor-pointer float-right">Save and Continue</button>
+            <Button />
+            <GreenButton />
         </div>
     );
 }
