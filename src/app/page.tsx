@@ -3,6 +3,8 @@ import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
+import InputField from "../components/input-field";
+import Button, { GreenButton } from "../components/button";
 // import { BlurImage } from "@/src/components/ui/BlurImage";
 // import { supabase } from "@/src/lib/supabase";
 import InputField from "../components/input-field";
