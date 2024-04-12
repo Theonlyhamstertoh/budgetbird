@@ -140,20 +140,7 @@ const TransactionPage = () => {
         {transactions.length > 0 ? (
           <div className="border">
             {transactions.map((transaction, id) => (
-              <div className="border-y-2">
-                {/* <div className="flex items-center justify-between">
-                  <div className="flex"></div>
-
-                  <div className="flex w-1/5 justify-around mx-4">
-                    <h4 className="text-green-500 font-semibold">
-                      ${incomeSum([transaction])}
-                    </h4>
-                    <h4 className="text-red-500 font-semibold">
-                      ${expenseSum([transaction])}
-                    </h4>
-                  </div>
-                </div> */}
-
+              <div className="border-y-2" key={id}>
                 <div>
                   <div className="flex px-10 justify-between items-center p-2 border-t">
                     <div className="flex mx-4 w-1/6">
