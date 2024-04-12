@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { plus_jakarta_sans } from "./fonts";
+import DashboardSidebar from "../components/dashboard-bar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={plus_jakarta_sans.className}>{children}</body>
+      <body className={`${plus_jakarta_sans.className} flex`}>
+        <DashboardSidebar />
+        {children}
+      </body>
     </html>
   );
 }

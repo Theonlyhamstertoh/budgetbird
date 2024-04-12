@@ -115,7 +115,7 @@ const TransactionPage = () => {
   //   }, [month, year]);
 
   return (
-    <div className="container">
+    <div className="container flex flex-col justify-between">
       <div className="flex justify-between my-5">
         <OverviewCard
           icon="/money.png"
@@ -136,7 +136,7 @@ const TransactionPage = () => {
           moneyColor="text-neutral-500"
         />
       </div>
-      <div>
+      <div className="my-5">
         {transactions.length > 0 ? (
           <div className="border">
             {transactions.map((transaction, id) => (
