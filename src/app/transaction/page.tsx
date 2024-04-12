@@ -16,48 +16,48 @@ type LogEntry = {
 
 const TransactionPage = () => {
   const log: LogEntry[] = [
-    {
-      date: new Date("02/15/2024"),
-      transactions: [
-        { type: "Income", category: "Salary", desc: "Salary ", amount: 1000 },
-        {
-          type: "Expense",
-          category: "Restaurant",
-          desc: "BJ's ",
-          amount: 50,
-        },
-        {
-          type: "Expense",
-          category: "Entertainment",
-          desc: "Ralphs ",
-          amount: 50,
-        },
-      ],
-    },
-    {
-      date: new Date("01/03/2024"),
-      transactions: [
-        { type: "Income", category: "Salary", desc: "Salary ", amount: 1000 },
-        {
-          type: "Expense",
-          category: "Restaurant",
-          desc: "BJ's ",
-          amount: 50,
-        },
-        {
-          type: "Expense",
-          category: "Entertainment",
-          desc: "Movies ",
-          amount: 50,
-        },
-      ],
-    },
-    {
-      date: new Date("01/01/2024"),
-      transactions: [
-        { type: "Expense", category: "Grocery", desc: "Ralphs ", amount: 50 },
-      ],
-    },
+    // {
+    //   date: new Date("02/15/2024"),
+    //   transactions: [
+    //     { type: "Income", category: "Salary", desc: "Salary ", amount: 1000 },
+    //     {
+    //       type: "Expense",
+    //       category: "Restaurant",
+    //       desc: "BJ's ",
+    //       amount: 50,
+    //     },
+    //     {
+    //       type: "Expense",
+    //       category: "Entertainment",
+    //       desc: "Ralphs ",
+    //       amount: 50,
+    //     },
+    //   ],
+    // },
+    // {
+    //   date: new Date("01/03/2024"),
+    //   transactions: [
+    //     { type: "Income", category: "Salary", desc: "Salary ", amount: 1000 },
+    //     {
+    //       type: "Expense",
+    //       category: "Restaurant",
+    //       desc: "BJ's ",
+    //       amount: 50,
+    //     },
+    //     {
+    //       type: "Expense",
+    //       category: "Entertainment",
+    //       desc: "Movies ",
+    //       amount: 50,
+    //     },
+    //   ],
+    // },
+    // {
+    //   date: new Date("01/01/2024"),
+    //   transactions: [
+    //     { type: "Expense", category: "Grocery", desc: "Ralphs ", amount: 50 },
+    //   ],
+    // },
   ];
 
   const [transactions, setTransactions] = useState(log);
@@ -180,7 +180,7 @@ const TransactionPage = () => {
             ))}
           </div>
         ) : (
-          <div>
+          <div className="flex flex-col items-center m-5">
             <img src="/hands-balance.png" alt="nothing" />
             <p>There is nothing here yet. Add something to continue</p>
           </div>
