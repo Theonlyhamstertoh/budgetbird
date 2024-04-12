@@ -3,61 +3,64 @@ import { useState, useEffect } from "react";
 import OverviewCard from "@/src/components/transaction/overview-card";
 
 type Transaction = {
+  date: Date;
   type: string;
   category: string;
   desc: string;
   amount: number;
 };
 
-type LogEntry = {
-  date: Date;
-  transactions: Transaction[];
-};
-
 const TransactionPage = () => {
-  const log: LogEntry[] = [
-    // {
-    //   date: new Date("02/15/2024"),
-    //   transactions: [
-    //     { type: "Income", category: "Salary", desc: "Salary ", amount: 1000 },
-    //     {
-    //       type: "Expense",
-    //       category: "Restaurant",
-    //       desc: "BJ's ",
-    //       amount: 50,
-    //     },
-    //     {
-    //       type: "Expense",
-    //       category: "Entertainment",
-    //       desc: "Ralphs ",
-    //       amount: 50,
-    //     },
-    //   ],
-    // },
-    // {
-    //   date: new Date("01/03/2024"),
-    //   transactions: [
-    //     { type: "Income", category: "Salary", desc: "Salary ", amount: 1000 },
-    //     {
-    //       type: "Expense",
-    //       category: "Restaurant",
-    //       desc: "BJ's ",
-    //       amount: 50,
-    //     },
-    //     {
-    //       type: "Expense",
-    //       category: "Entertainment",
-    //       desc: "Movies ",
-    //       amount: 50,
-    //     },
-    //   ],
-    // },
-    // {
-    //   date: new Date("01/01/2024"),
-    //   transactions: [
-    //     { type: "Expense", category: "Grocery", desc: "Ralphs ", amount: 50 },
-    //   ],
-    // },
+  const log: Transaction[] = [
+    {
+      date: new Date("02/15/2024"),
+      type: "Income",
+      category: "Salary",
+      desc: "Salary",
+      amount: 1000,
+    },
+    {
+      date: new Date("02/15/2024"),
+      type: "Expense",
+      category: "Restaurant",
+      desc: "BJ's",
+      amount: 50,
+    },
+    {
+      date: new Date("02/15/2024"),
+      type: "Expense",
+      category: "Entertainment",
+      desc: "Ralphs",
+      amount: 50,
+    },
+    {
+      date: new Date("01/03/2024"),
+      type: "Income",
+      category: "Salary",
+      desc: "Salary",
+      amount: 1000,
+    },
+    {
+      date: new Date("01/03/2024"),
+      type: "Expense",
+      category: "Restaurant",
+      desc: "BJ's",
+      amount: 50,
+    },
+    {
+      date: new Date("01/03/2024"),
+      type: "Expense",
+      category: "Entertainment",
+      desc: "Movies",
+      amount: 50,
+    },
+    {
+      date: new Date("01/01/2024"),
+      type: "Expense",
+      category: "Grocery",
+      desc: "Ralphs",
+      amount: 50,
+    },
   ];
 
   const [transactions, setTransactions] = useState(log);
@@ -138,44 +141,45 @@ const TransactionPage = () => {
           <div className="border">
             {transactions.map((transaction, id) => (
               <div className="border-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex">
-                    <h3 className="font-semibold text-neutral-600 text-xl pl-10 px-1 py-2">
-                      {String(transaction.date.getDate()).padStart(2, "0")}
-                    </h3>
-                    <h3 className="font-semibold text-neutral-600 text-xl px-1 py-2">
-                      {getMonthName(transaction.date.getMonth() + 1)}
-                    </h3>
-                  </div>
+                {/* <div className="flex items-center justify-between">
+                  <div className="flex"></div>
 
                   <div className="flex w-1/5 justify-around mx-4">
                     <h4 className="text-green-500 font-semibold">
-                      ${incomeSum(transaction.transactions)}
+                      ${incomeSum([transaction])}
                     </h4>
                     <h4 className="text-red-500 font-semibold">
-                      ${expenseSum(transaction.transactions)}
+                      ${expenseSum([transaction])}
+                    </h4>
+                  </div>
+                </div> */}
+
+                <div>
+                  <div className="flex px-10 justify-between items-center p-2 border-t">
+                    <div className="flex mx-4 w-1/6">
+                      <h3 className="font-semibold text-neutral-600 pl-10 px-1 py-2">
+                        {String(transaction.date.getDate()).padStart(2, "0")}
+                      </h3>
+                      <h3 className="font-semibold text-neutral-600 px-1 py-2">
+                        {getMonthName(transaction.date.getMonth() + 1)}
+                      </h3>
+                    </div>
+
+                    <h4 className=" text-slate-500 font-semibold w-1/6">
+                      {transaction.category}
+                    </h4>
+                    <h4 className="font-medium w-3/6">{transaction.desc}</h4>
+                    <h4
+                      className={` font-medium text-end w-1/6 pr-10 ${
+                        transaction.type === "Income"
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }`}
+                    >
+                      ${transaction.amount}{" "}
                     </h4>
                   </div>
                 </div>
-
-                {transaction.transactions.map((t, index) => (
-                  <div
-                    key={index}
-                    className="flex px-10 justify-between p-2 border-t"
-                  >
-                    <h4 className="w-1/5 text-slate-500 font-semibold">
-                      {t.category}
-                    </h4>
-                    <h4 className="w-3/5 font-medium">{t.desc}</h4>
-                    <h4
-                      className={`w-1/5 font-medium text-end pr-5 ${
-                        t.type === "Income" ? "text-green-500" : "text-red-500"
-                      }`}
-                    >
-                      ${t.amount}{" "}
-                    </h4>
-                  </div>
-                ))}
               </div>
             ))}
           </div>
