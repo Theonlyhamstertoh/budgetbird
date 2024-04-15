@@ -1,26 +1,31 @@
+import { Emoji } from "emoji-picker-react";
+import Image from "next/image";
+import { Input } from "./ui/input";
+
 interface InputFields {
     label: string;
-    placeholder: string | number;
+    placeholder?: string | number;
     icon?: string;
+    emoji?: string;
+    disabled?: boolean;
 }
-
-const InputField = ({ label, placeholder, icon }: InputFields) => {
+function InputField({ label, icon, emoji, placeholder, disabled }: InputFields) {
     return (
-        <div className="bg-[#FAFAFA] rounded-md drop-shadow-md m-5 p-3 flex justify-between ">
-            <div className="flex items-center">
-                {icon && <img src={icon} alt="icon" className="w-7" />}
-                <label htmlFor="input" className="mx-2 font-semibold text-zinc-600">
-                    {label}:
-                </label>
-            </div>
-            <input
-                type="text"
-                placeholder={typeof placeholder === "number" ? `$${placeholder.toLocaleString()}` : String(placeholder)}
-                id="input"
-                className="bg-transparent"
+        <div
+            className="bg-white border-2 pl-3 border-zinc-200/70 rounded-lg flex items-center"
+            style={{ boxShadow: "0px 4px 0px 0 rgba(0,0,0,0.05)" }}
+        >
+            <label htmlFor="input" className="mx-2  flex gap-2 font-semibold text-zinc-600">
+                {emoji && <Emoji unified={emoji} size={25} />}
+                {icon && <Image src={icon} width="150" height="150" className="w-7" alt="Icon" />}
+                {label}:
+            </label>
+            <Input
+                className="border-none "
+                disabled={disabled}
+                placeholder={typeof placeholder === "number" ? `$${placeholder.toLocaleString()}` : placeholder}
             />
         </div>
     );
-};
-
+}
 export default InputField;

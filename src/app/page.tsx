@@ -1,5 +1,4 @@
 "use client";
-import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
 import { createClient } from "@supabase/supabase-js";
