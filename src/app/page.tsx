@@ -13,6 +13,8 @@ import DashboardSidebar from "../components/dashboard-bar";
 import OnboardingBar from "../components/onboard-bar";
 import OverviewCard from "../components/transaction/overview-card";
 import AddCategoryButton from "../components/category-add-button";
+import TransactionsTopBar from "../components/transactions-top-bar";
+import { propagateServerField } from "next/dist/server/lib/render-server";
 // function Button() {
 //     return (
 
@@ -68,7 +70,10 @@ export default function HomePage() {
             <InputField label="poop" icon="/bird-logo.png" placeholder="2000" />
             {/* <div className="" */}
             <button className="text-black bg-white  p-5 rounded cursor-pointer float-right">Save and Continue</button>
+
+            <TransactionsTopBar onSwitchMonth='' onSwitchView='' monthLabel="March" addIncome=""/>
         </div>
+
 
 
         
