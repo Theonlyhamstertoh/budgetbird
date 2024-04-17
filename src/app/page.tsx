@@ -7,7 +7,6 @@ import InputField from "../components/input-field";
 import { BudgetCardWithoutProgressBar, BudgetCardWithProgressBar } from "../components/budget-progress";
 import TotalMonthSpendingCard from "../components/total-month-spending";
 import Button, { GreenButton } from "../components/button";
-import InputField from "../components/input-field";
 import BudgetBird from "../components/budget-bird";
 import DashboardSidebar from "../components/dashboard-bar";
 import OnboardingBar from "../components/onboard-bar";
@@ -39,29 +38,29 @@ export default function HomePage() {
             <div className="heading">
                 <h2 className="text-2xl">Let's Start Setting Up Your Budget</h2>
             </div>
-            
-            
-            
+
             {/*budgetprogressbar */}
             <div>
-            <div style={{
-                maxWidth: '400px',
-                margin: '0 auto',
-                borderRadius: '10px',
-                position: 'relative', // Position relative for absolute positioning
-            }}>
-                <div style={{ paddingLeft: '90px' }}> {/* Adjust padding to make space for the logo */}
-                    <BudgetCardWithProgressBar category="Automotive" budget={300} spent={180} />
-                    <BudgetCardWithoutProgressBar category="Automotive" budget={200} spent={100} />
-                    {/* Total month spending card */}
-                    <TotalMonthSpendingCard spent={580} budget={3000} />
-                    {/* Add more BudgetCard components for other categories as needed */}
+                <div
+                    style={{
+                        maxWidth: "400px",
+                        margin: "0 auto",
+                        borderRadius: "10px",
+                        position: "relative", // Position relative for absolute positioning
+                    }}
+                >
+                    <div style={{ paddingLeft: "90px" }}>
+                        {" "}
+                        {/* Adjust padding to make space for the logo */}
+                        <BudgetCardWithProgressBar category="Automotive" budget={300} spent={180} />
+                        <BudgetCardWithoutProgressBar category="Automotive" budget={200} spent={100} />
+                        {/* Total month spending card */}
+                        <TotalMonthSpendingCard spent={580} budget={3000} />
+                        {/* Add more BudgetCard components for other categories as needed */}
+                    </div>
                 </div>
             </div>
-        </div>
 
-
-        
             {/* Coin Money  */}
             <Image src="/coin-money.png" alt="Coin And Money " width="200" height="200" />
             <p className="text-black text-lg">What is your income and savings?</p>
@@ -73,10 +72,6 @@ export default function HomePage() {
 
             <TransactionsTopBar onSwitchMonth='' onSwitchView='' monthLabel="March" addIncome=""/>
         </div>
-
-
-
-        
     );
 }
 
@@ -103,6 +98,3 @@ export default function HomePage() {
 //         </div>
 //     );
 // }
-
-
-

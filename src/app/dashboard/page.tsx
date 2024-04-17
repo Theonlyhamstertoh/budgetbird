@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 
-import { createClient } from "@/src/lib/supabase/server";
 import { Button } from "@/src/components/ui/button";
 
 export default async function Page() {
