@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 function DashboardSidebar() {
     return (
-      <div className="bg-emerald-900 flex flex-col items-center h-screen w-1/4">
+      <div className="bg-emerald-900 flex flex-col items-center h-screen w-1/5">
       <div className="flex items-center my-10">
           <img src="/lucide_bird.svg" alt="BudgetBird" width="30" height="30" className="mr-2" />
           <h1 className="text-emerald-400">BudgetBird</h1>
