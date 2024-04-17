@@ -13,7 +13,7 @@ type AddCategoryButtonProps = {
 
 function AddCategoryButton({ icon, label }: AddCategoryButtonProps) {
   return (
-    <div className="bg-[#FAFAFA] rounded-md drop-shadow-md w-80 m-5 p-3 flex justify-between items-center">
+    <div className="bg-[#FAFAFA] rounded-md drop-shadow-md w-60 m-5 p-3 flex justify-between items-center">
       <div className="flex">
         {icon && <img src={icon} alt="icon" className="w-7" />}
         <h3 className="mx-2 font-semibold text-zinc-600">{label}</h3>
