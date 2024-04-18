@@ -23,28 +23,56 @@ import { Input } from "@/src/components/ui/input";
 import Image from "next/image";
 import { Popover, PopoverContent, PopoverTrigger } from "@/src/components/ui/popover";
 
+const emojiObject = {
+    leafygreen: "1f96c",
+    fuelpump: "26fd",
+    shoppingbag: "1f6d2",
+    car: "1f697",
+    airplane: "1f6a1",
+    clinkingbeermugs: "1f37b",
+    womandancing: "1f483",
+};
+
 export default function Page() {
+    function handleAddCategoryClick(event: React.MouseEvent<HTMLButtonElement>) {
+        console.log("yo");
+    }
     return (
         <div>
             <div className="relative flex bg-[#FAF8F5] flex-col items-center h-full pt-8">
                 <BudgetBird />
                 <div className=" text-2xl font-bold   my-4">What categories would you like to add?</div>
                 <img className="w-56" src="/grocerycart.png" />
-                <div className="grid grid-cols-3 p-15">
-                    <AddCategoryButton icon="/lettuce.png" label="Groceries" />
-                    <AddCategoryButton icon="/fuel-pump.png" label="Gas" />
-                    <AddCategoryButton icon="/shopping-bag.png" label="Shopping" />
-                    <AddCategoryButton icon="/car.png" label="Automotive" />
-                    <AddCategoryButton icon="/airplane.png" label="Traveling" />
-                    <AddCategoryButton icon="/Clinking-beer-mugs.png" label="Food & Drinks" />
+                <div className="grid grid-cols-3 p-15 gap-2">
+                    <AddCategoryButton emoji={emojiObject.fuelpump} label="Gas" onClick={handleAddCategoryClick} />
+                    <AddCategoryButton
+                        emoji={emojiObject.leafygreen}
+                        label="Groceries"
+                        onClick={handleAddCategoryClick}
+                    />
+                    <AddCategoryButton
+                        emoji={emojiObject.shoppingbag}
+                        label="Shopping"
+                        onClick={handleAddCategoryClick}
+                    />
+                    <AddCategoryButton emoji={emojiObject.car} label="Automotive" onClick={handleAddCategoryClick} />
+                    <AddCategoryButton
+                        emoji={emojiObject.airplane}
+                        label="Traveling"
+                        onClick={handleAddCategoryClick}
+                    />
+                    <AddCategoryButton
+                        emoji={emojiObject.clinkingbeermugs}
+                        label="Food & Drinks"
+                        onClick={handleAddCategoryClick}
+                    />
+                    <AddCategoryButton
+                        label="Create your own category"
+                        className="col-span-3 py-3 mt-3"
+                        onClick={handleAddCategoryClick}
+                    />
                 </div>
-                <div className="w-[800px] h-[63px] p-[22px] bg-[#FAFAFA] rounded-md drop-shadow-md border-zinc-200 justify-between items-center inline-flex">
-                    <div className="text-zinc-600 text-base font-semibold font-['Plus Jakarta Sans']">
-                        Create your own category
-                    </div>
-                    <div className="w-6 h-6 relative" />
-                    <h2 className="text-2xl cursor-pointer">+</h2>
-                </div>
+
                 <div className="w-[330px] h-[0px] border-2 border-zinc-200 mt-16 mb-8"></div>
                 <div className=" grid grid-cols-3 gap-10 pb-8">
                     <BudgetCardWithoutProgressBar category="Automotive" budget={300} spent={0} icon={"/car.png"} />
