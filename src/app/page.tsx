@@ -2,7 +2,7 @@
 import { cn } from "@/src/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 import InputField from "../components/input-field";
 import { BudgetCardWithoutProgressBar, BudgetCardWithProgressBar } from "../components/budget-progress";
 import TotalMonthSpendingCard from "../components/total-month-spending";
@@ -12,6 +12,7 @@ import DashboardSidebar from "../components/dashboard-bar";
 import OnboardingBar from "../components/onboard-bar";
 import OverviewCard from "../components/transaction/overview-card";
 import AddCategoryButton from "../components/category-add-button";
+import AddIncomeExpense, {AddExpense} from "../components/AddIncomeExpense";
 import TransactionsTopBar from "../components/transactions-top-bar";
 import { propagateServerField } from "next/dist/server/lib/render-server";
 // function Button() {
@@ -69,7 +70,8 @@ export default function HomePage() {
             <InputField label="poop" icon="/bird-logo.png" placeholder="2000" />
             {/* <div className="" */}
             <button className="text-black bg-white  p-5 rounded cursor-pointer float-right">Save and Continue</button>
-
+            <AddIncomeExpense />
+            <AddExpense />
             <TransactionsTopBar onSwitchMonth='' onSwitchView='' monthLabel="March" addIncome=""/>
         </div>
     );
