@@ -3,7 +3,7 @@ import BudgetBird from "@/src/components/budget-bird";
 import AddCategoryButton from "@/src/components/category-add-button";
 import InputField from "@/src/components/input-field";
 import OnboardingBar from "@/src/components/onboard-bar";
-import { BudgetCardWithoutProgressBar } from "@/src/components/budget-progress";
+import { BudgetCardWithProgressBar, BudgetCardWithoutProgressBar } from "@/src/components/budget-progress";
 import { Button } from "@/src/components/ui/button";
 import EmojiPicker, { Emoji, EmojiStyle } from "emoji-picker-react";
 import {
@@ -38,58 +38,68 @@ export default function Page() {
         console.log("yo");
     }
     return (
-        <div>
-            <div className="relative flex bg-[#FAF8F5] flex-col items-center h-full pt-8">
-                <BudgetBird />
-                <div className=" text-2xl font-bold   my-4">What categories would you like to add?</div>
-                <img className="w-56" src="/grocerycart.png" />
-                <div className="grid grid-cols-3 p-15 gap-2">
-                    <AddCategoryButton emoji={emojiObject.fuelpump} label="Gas" onClick={handleAddCategoryClick} />
-                    <AddCategoryButton
-                        emoji={emojiObject.leafygreen}
-                        label="Groceries"
-                        onClick={handleAddCategoryClick}
-                    />
-                    <AddCategoryButton
-                        emoji={emojiObject.shoppingbag}
-                        label="Shopping"
-                        onClick={handleAddCategoryClick}
-                    />
-                    <AddCategoryButton emoji={emojiObject.car} label="Automotive" onClick={handleAddCategoryClick} />
-                    <AddCategoryButton
-                        emoji={emojiObject.airplane}
-                        label="Traveling"
-                        onClick={handleAddCategoryClick}
-                    />
-                    <AddCategoryButton
-                        emoji={emojiObject.clinkingbeermugs}
-                        label="Food & Drinks"
-                        onClick={handleAddCategoryClick}
-                    />
-                    <AddCategoryButton
-                        label="Create your own category"
-                        className="col-span-3 py-3 mt-3"
-                        onClick={handleAddCategoryClick}
-                    />
-                </div>
+        <div className="bg-[#FAF8F5] grid grid-rows-[1fr_auto] grid-cols-1 h-screen  ">
+            <div className="pt-8 overflow-y-scroll pb-28">
+                <div className="mx-auto w-fit flex flex-col items-center">
+                    <BudgetBird />
+                    <div className=" text-2xl font-bold   my-4">What categories would you like to add?</div>
+                    <Image alt="Grocery Cart Banner" className="my-8" width="250" height="250" src="/grocerycart.png" />
+                    <div className="grid md:grid-cols-3 p-15 gap-3 w-full">
+                        <AddCategoryButton emoji={emojiObject.fuelpump} label="Gas" onClick={handleAddCategoryClick} />
+                        <AddCategoryButton
+                            emoji={emojiObject.leafygreen}
+                            label="Groceries"
+                            onClick={handleAddCategoryClick}
+                        />
+                        <AddCategoryButton
+                            emoji={emojiObject.shoppingbag}
+                            label="Shopping"
+                            onClick={handleAddCategoryClick}
+                        />
+                        <AddCategoryButton
+                            emoji={emojiObject.car}
+                            label="Automotive"
+                            onClick={handleAddCategoryClick}
+                        />
+                        <AddCategoryButton
+                            emoji={emojiObject.airplane}
+                            label="Traveling"
+                            onClick={handleAddCategoryClick}
+                        />
+                        <AddCategoryButton
+                            emoji={emojiObject.clinkingbeermugs}
+                            label="Food & Drinks"
+                            onClick={handleAddCategoryClick}
+                        />
+                        <AddCategoryButton
+                            label="Create your own category"
+                            className="md:col-span-3 py-3"
+                            onClick={handleAddCategoryClick}
+                        />
+                    </div>
 
-                <div className="w-[330px] h-[0px] border-2 border-zinc-200 mt-16 mb-8"></div>
-                <div className=" grid grid-cols-3 gap-10 pb-8">
-                    <BudgetCardWithoutProgressBar category="Automotive" budget={300} spent={0} icon={"/car.png"} />
-                    <BudgetCardWithoutProgressBar
-                        category="Dancing"
-                        budget={200}
-                        spent={0}
-                        icon={"/woman-dancing.png"}
-                    />
-                    <BudgetCardWithoutProgressBar category="Gas" budget={200} spent={0} icon={"/fuel-pump.png"} />
-                </div>
-                <div className="mt-16">
-                    <OnboardingBar prevHref="dummy.org" nextHref="dummy.org" />
+                    <div className="w-[330px] h-[0px] border-2 border-stone-200 mt-16 mb-8"></div>
+                    <div className=" grid md:grid-cols-3 gap-10 pb-8">
+                        {/* MAP ARRAY HERE */}
+
+                        {/* <BudgetCardWithoutProgressBar category="Automotive" budget={300} spent={0} emoji={"/car.png"} />
+                        <BudgetCardWithoutProgressBar
+                            category="Dancing"
+                            budget={200}
+                            spent={0}
+                            emoji={"/woman-dancing.png"}
+                        />
+                        <BudgetCardWithProgressBar
+                            category="Gas"
+                            budget={200}
+                            spent={10}
+                            emoji={emojiObject.fuelpump}
+                        /> */}
+                    </div>
                 </div>
             </div>
 
-            {/* <CategoryDrawer /> */}
+            <OnboardingBar prevHref="/onboard/income" nextHref="/onboard/completion" />
         </div>
     );
 }
