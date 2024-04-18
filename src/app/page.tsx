@@ -11,7 +11,7 @@ import DashboardSidebar from "../components/dashboard-bar";
 import OnboardingBar from "../components/onboard-bar";
 import OverviewCard from "../components/transaction/overview-card";
 import AddCategoryButton from "../components/category-add-button";
-import AddIncomeExpense, {AddExpense} from "../components/AddIncomeExpense";
+import AddIncomeExpense, { AddExpense } from "../components/AddIncomeExpense";
 import TransactionsTopBar from "../components/transactions-top-bar";
 import { propagateServerField } from "next/dist/server/lib/render-server";
 
@@ -40,7 +40,6 @@ export default function HomePage() {
                 <h2 className="text-2xl">Let's Start Setting Up Your Budget</h2>
             </div>
 
-
             {/*budgetprogressbar */}
             <div>
                 <div
@@ -54,8 +53,8 @@ export default function HomePage() {
                     <div style={{ paddingLeft: "90px" }}>
                         {" "}
                         {/* Adjust padding to make space for the logo */}
-                        <BudgetCardWithProgressBar category="Automotive" budget={300} spent={180} />
-                        <BudgetCardWithoutProgressBar category="Automotive" budget={200} spent={100} />
+                        {/* <BudgetCardWithProgressBar category="Automotive" budget={300} spent={180} /> */}
+                        {/* <BudgetCardWithoutProgressBar category="Automotive" budget={200} spent={100} /> */}
                         {/* Total month spending card */}
                         <TotalMonthSpendingCard spent={580} budget={3000} />
                         {/* Add more BudgetCard components for other categories as needed */}
@@ -72,31 +71,7 @@ export default function HomePage() {
             <button className="text-black bg-white  p-5 rounded cursor-pointer float-right">Save and Continue</button>
             <AddIncomeExpense />
             <AddExpense />
-            <TransactionsTopBar onSwitchMonth='' onSwitchView='' monthLabel="March" addIncome=""/>
+            {/* <TransactionsTopBar onSwitchMonth="" onSwitchView="" monthLabel="March" addIncome="" /> */}
         </div>
     );
 }
-
-// export default function Gallery() {
-//     const setNewView = async () => {
-//         const { data, error } = await supabase.from("views").insert({
-//             name: "random name",
-//         });
-//         console.log("LOGGING", data, error);
-//         if (data) console.log(data);
-//         if (error) console.log(error);
-//     };
-
-//     setNewView();
-//     return (
-//         <div className="max-w-2xl bg-neutral-100 mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8 ">
-//             <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-//                 {/* Images will go here */}
-//                 {/* <PlaceholderImage /> */}
-//                 {[...new Array(18)].map((_, i) => (
-//                     <BlurImage key={i} />
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// }

@@ -1,3 +1,9 @@
+import BudgetBird from "@/src/components/budget-bird";
+
 export default function Page() {
-    return <div>Poop</div>;
+    return (
+        <div>
+            <BudgetBird />
+        </div>
+    );
 }
