@@ -9,8 +9,9 @@ import Link from "next/link";
  */
 
 function DashboardSidebar() {
-  return (
-    <div className="bg-emerald-900 flex flex-col items-center h-screen w-1/4">
+    return (
+      <div className="bg-emerald-900 flex flex-col items-center h-screen w-1/5">
+
       <div className="flex items-center my-10">
         <img
           src="/lucide_bird.svg"

@@ -1,19 +1,24 @@
 import React from "react";
 
-type TransactionProp = {
+type RecentTransactionProps = {
     name: string;
     category: string;
     cost: number;
 };
-/**
- *  *
- * @assignee Weibo
- * @task Display recent transaction
- * @returns
- *
- */
-function BudgetCard({ category, name, cost }: TransactionProp) {
-    return <div>BudgetCard</div>;
+
+function RecentTransaction({ name, category, cost }: RecentTransactionProps) {
+    return (
+        <div className="recent-transaction">
+            <h3>Recent Transaction</h3>
+            <div className="transaction-details">
+            <p style={{ fontSize: '24px', fontWeight: 'bold' }}>{name}</p>
+                <div className="cost">
+                    <p className="category">{category}</p>
+                    <p className="amount">-{cost.toFixed(2)}</p>
+                </div>
+            </div>
+        </div>
+    );
 }
 
-export default BudgetCard;
+export default RecentTransaction;

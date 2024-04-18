@@ -15,6 +15,7 @@ import AddCategoryButton from "../components/category-add-button";
 import AddIncomeExpense, {AddExpense} from "../components/AddIncomeExpense";
 import TransactionsTopBar from "../components/transactions-top-bar";
 import { propagateServerField } from "next/dist/server/lib/render-server";
+
 // function Button() {
 //     return (
 
@@ -40,6 +41,7 @@ export default function HomePage() {
                 <h2 className="text-2xl">Let's Start Setting Up Your Budget</h2>
             </div>
 
+
             {/*budgetprogressbar */}
             <div>
                 <div
@@ -61,7 +63,6 @@ export default function HomePage() {
                     </div>
                 </div>
             </div>
-
             {/* Coin Money  */}
             <Image src="/coin-money.png" alt="Coin And Money " width="200" height="200" />
             <p className="text-black text-lg">What is your income and savings?</p>

@@ -37,6 +37,7 @@ function BudgetCardWithProgressBar({ category, budget, spent, icon }: BudgetProp
 
 
 
+
 function BudgetCardWithoutProgressBar({ category, budget, spent, icon }: BudgetProps) {
 
     const percentageSpent = (spent / budget) * 100;
