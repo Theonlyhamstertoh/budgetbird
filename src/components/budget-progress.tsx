@@ -12,7 +12,7 @@ type BudgetProps = {
  *  *
  * @assignee Andrew
  * @task Display Budget state with and without progress bar
- * @returns budget state with progress bar. 
+ * @returns budget state with progress bar.
  *
  */
 function BudgetCardWithProgressBar({ category, budget, spent, icon }: BudgetProps) {
@@ -36,6 +36,7 @@ function BudgetCardWithProgressBar({ category, budget, spent, icon }: BudgetProp
 }
 
 
+
 function BudgetCardWithoutProgressBar({ category, budget, spent, icon }: BudgetProps) {
 
     const percentageSpent = (spent / budget) * 100;
@@ -51,11 +52,8 @@ function BudgetCardWithoutProgressBar({ category, budget, spent, icon }: BudgetP
             <div className="progress-bar-container">
                 <div className="w-[194px] h-2 bg-zinc-300 rounded-3xl" />
             </div>
-
         </div>
     );
 }
-
-
 
 export { BudgetCardWithProgressBar, BudgetCardWithoutProgressBar };
