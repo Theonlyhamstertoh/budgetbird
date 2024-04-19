@@ -29,6 +29,7 @@ export const useBudgetStore = create<BudgetState>()((set) => ({
     addCategory: (name, emoji, budget) =>
         set((state) => {
             const newCategory: CategoryProps = { name, emoji, budget, id: crypto.randomUUID() };
+            console.log(newCategory);
             return { categories: [...state.categories, newCategory] };
         }),
     editCategory: (name, emoji, budget, id) =>

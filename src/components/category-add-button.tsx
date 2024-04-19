@@ -10,13 +10,14 @@ type AddCategoryButtonProps = {
     emoji?: string;
     className?: string;
     label: string;
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    name: string;
+    onClick: (name: string, emoji: string) => void;
 };
 
-function AddCategoryButton({ emoji, label, onClick, className }: AddCategoryButtonProps) {
+function AddCategoryButton({ emoji = "", label, name, onClick, className }: AddCategoryButtonProps) {
     return (
         <Button
-            onClick={onClick}
+            onClick={() => onClick(name, emoji)}
             variant={"secondary"}
             className={cn(
                 "bg-white h-fit w-full p-2 px-4 border-2 border-zinc-200/70 rounded-lg flex items-center justify-between",

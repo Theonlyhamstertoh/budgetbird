@@ -4,8 +4,7 @@ import EmojiPicker, { Emoji, EmojiStyle } from "emoji-picker-react";
 import React, { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/src/components/ui/popover";
 
-export function EmojiInputField({ label }: any) {
-    const [emoji, setEmoji] = useState("1f423");
+export function EmojiInputField({ label, setEmoji, emoji }: any) {
     const [active, setActive] = useState(false);
     return (
         <Popover open={active} onOpenChange={(open) => setActive(open)}>

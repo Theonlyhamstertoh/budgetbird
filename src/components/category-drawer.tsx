@@ -11,10 +11,17 @@ import {
     DrawerTrigger,
 } from "@/src/components/ui/drawer";
 
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { EmojiInputField } from "./emoji-input-field";
+import { useBudgetStore } from "../app/store";
 
-export function CategoryDrawer({ children }: { children: React.ReactNode }) {
+export function CategoryDrawer({ open, children }: { open?: boolean; children: React.ReactNode }) {
+    const [name, setName] = useState("");
+    const [budget, setBudget] = useState(0);
+    const [emoji, setEmoji] = useState("");
+
+    const addCategory = useBudgetStore((state) => state.addCategory);
+
     return (
         <Drawer>
             <DrawerTrigger className="w-full">{children}</DrawerTrigger>
@@ -36,10 +43,11 @@ export function CategoryDrawer({ children }: { children: React.ReactNode }) {
                 </DrawerHeader>
                 <DrawerFooter className="max-w-md w-full">
                     {/* <Button className="w-full">Save</Button> */}
-                    <InputField label="Category Name" />
-                    <InputField label="Budget" />
-                    <EmojiInputField label="Choose Icon" />
+                    <InputField label="Category Name" value={name} />
+                    <InputField label="Budget" value={budget} />
+                    <EmojiInputField label="Choose Icon" emoji={emoji} setEmoji={setEmoji} />
                     <button
+                        onClick={() => addCategory(name, emoji, budget)}
                         className="rounded-xl h-12 py-3 mt-8 bg-emerald-700 border-[1.5px] border-emerald-700 text-white font-medium"
                         style={{ boxShadow: "0px 4px 0px 0 #03593e" }}
                     >

@@ -9,9 +9,10 @@ interface InputFields {
     icon?: string;
     emoji?: string;
     disabled?: boolean;
-    value?: string;
+    value?: string | number;
+    setValue: React.Dispatch<React.SetStateAction<any>>;
 }
-function InputField({ label, icon, emoji, placeholder, disabled, value }: InputFields) {
+function InputField({ label, icon, emoji, placeholder, disabled, value, setValue }: InputFields) {
     return (
         <div
             className="bg-white border-2 pl-3 w-full border-zinc-200/70 rounded-lg flex items-center"
@@ -23,9 +24,10 @@ function InputField({ label, icon, emoji, placeholder, disabled, value }: InputF
                 {label}:
             </label>
             <Input
-                className="border-none placeholder:font-medium placeholder:text-stone-800"
+                className="border-none placeholder:font-medium text-md placeholder:text-stone-800"
                 disabled={disabled}
                 value={value}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
                 placeholder={typeof placeholder === "number" ? `$${placeholder.toLocaleString()}` : placeholder}
             />
         </div>
