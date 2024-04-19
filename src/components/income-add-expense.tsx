@@ -25,7 +25,6 @@ function AddIncomeExpense() {
     );
 }
 
-
 // expense selection
 export function AddExpense() {
     return (
@@ -39,7 +38,7 @@ export function AddExpense() {
                     </div>
                     <InputField label="Name" placeholder="Offstage" />
                     <InputField label="Amount" placeholder="$200.00" />
-                    <InputField label="Catergory" placeholder="Dancing" icon="woman-dancing.png"/>
+                    <InputField label="Catergory" placeholder="Dancing" icon="/woman-dancing.png" />
                     <InputField label="Date" placeholder="3/24/24" />
                     <div className="flex flex-col space-y-4">
                         <button className="bg-emerald-800 text-white shadow-lg py-3 px-4 rounded">Add</button>
@@ -47,7 +46,7 @@ export function AddExpense() {
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     );
 }
 

@@ -1,26 +1,38 @@
+import { PlusIcon } from "lucide-react";
+import Image from "next/image";
 import React from "react";
+import { Button } from "./ui/button";
+import { Emoji, EmojiStyle } from "emoji-picker-react";
+import clsx from "clsx";
+import { cn } from "../lib/utils";
 
 type AddCategoryButtonProps = {
-  icon?: string;
-  label: string;
+    emoji?: string;
+    className?: string;
+    label: string;
+    name: string;
+    onClick: (name: string, emoji: string) => void;
 };
-/**
- *  *
- * @assignee Zophia
- * @task Category button with icon and plus sign. Allow for icon to be optional.
- *
- */
 
-function AddCategoryButton({ icon, label }: AddCategoryButtonProps) {
-  return (
-    <div className="bg-[#FAFAFA] rounded-md drop-shadow-md w-60 m-5 p-3 flex justify-between items-center">
-      <div className="flex">
-        {icon && <img src={icon} alt="icon" className="w-7" />}
-        <h3 className="mx-2 font-semibold text-zinc-600">{label}</h3>
-      </div>
-      <h2 className="text-2xl cursor-pointer">+</h2>
-    </div>
-  );
+function AddCategoryButton({ emoji = "", label, name, onClick, className }: AddCategoryButtonProps) {
+    return (
+        <Button
+            onClick={() => onClick(name, emoji)}
+            variant={"secondary"}
+            className={cn(
+                "bg-white h-fit w-full p-2 px-4 border-2 border-zinc-200/70 rounded-lg flex items-center justify-between",
+                className
+            )}
+            style={{ boxShadow: "0px 4px 0px 0 rgba(0,0,0,0.05)" }}
+        >
+            <div className="flex items-center gap-2">
+                {emoji && <Emoji unified={emoji.toLowerCase()} emojiStyle={EmojiStyle.TWITTER} size={25} />}
+                <h3 className="mx-2 font-semibold text-zinc-600">{label}</h3>
+            </div>
+
+            <PlusIcon className="size-5" />
+        </Button>
+    );
 }
 
 export default AddCategoryButton;
