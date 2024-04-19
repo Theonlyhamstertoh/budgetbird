@@ -7,12 +7,11 @@ import { BudgetCardWithProgressBar, BudgetCardWithoutProgressBar } from "@/src/c
 import TotalMonthSpendingCard from "@/src/components/total-month-spending";
 import DashboardSidebar from "@/src/components/dashboard-bar";
 import RecentTransaction from "@/src/components/recent-transaction";
+import TransactionsTopBar from "@/src/components/transactions-top-bar";
 
 export default function Dashboard() {
     return (
-        <div className="dashboard-container">
-            <DashboardSidebar />
-
+        <div className="dashboard-container w-full">
             <div className="main-content">
                 {/* Content for the main section */}
                 <div className="graph-container">

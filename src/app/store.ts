@@ -1,10 +1,72 @@
 import { create } from "zustand";
 
+const log: TransactionProp[] = [
+    {
+        date: new Date("02/15/2024"),
+        type: "Income",
+        category: "Salary",
+        name: "Salary",
+        amount: 1000,
+        id: crypto.randomUUID(),
+    },
+    {
+        date: new Date("02/15/2024"),
+        type: "Expense",
+        category: "Restaurant",
+        name: "BJ's",
+        amount: 50,
+        id: crypto.randomUUID(),
+    },
+    {
+        date: new Date("02/15/2024"),
+        type: "Expense",
+        category: "Entertainment",
+        name: "Ralphs",
+        amount: 50,
+        id: crypto.randomUUID(),
+    },
+    {
+        date: new Date("01/03/2024"),
+        type: "Income",
+        category: "Salary",
+        name: "Salary",
+        amount: 1000,
+        id: crypto.randomUUID(),
+    },
+    {
+        date: new Date("01/03/2024"),
+        type: "Expense",
+        category: "Restaurant",
+        name: "BJ's",
+        amount: 50,
+        id: crypto.randomUUID(),
+    },
+    {
+        date: new Date("01/03/2024"),
+        type: "Expense",
+        category: "Entertainment",
+        name: "Movies",
+        amount: 50,
+        id: crypto.randomUUID(),
+    },
+    {
+        date: new Date("01/01/2024"),
+        type: "Expense",
+        category: "Grocery",
+        name: "Ralphs",
+        amount: 50,
+        id: crypto.randomUUID(),
+    },
+];
+
 interface BudgetState {
     savings: number;
     income: number;
     categories: CategoryProps[];
     transactions: TransactionProp[];
+    selectedMonth: number;
+    editSavings: (money: number) => void;
+    editIncome: (money: number) => void;
     addTransaction: (props: Omit<TransactionProp, "id">) => void;
     removeTransaction: (id: string) => void;
     addCategory: (name: string, emoji: string, budget: number) => void;
@@ -14,12 +76,31 @@ interface BudgetState {
 export const useBudgetStore = create<BudgetState>()((set) => ({
     savings: 0,
     income: 0,
-    categories: [],
-    transactions: [],
+    categories: [{ id: "income-category-123", name: "Income", emoji: "1f4b0", budget: 10000 }],
+    selectedMonth: new Date().getMonth(), // value from 0 (January) to 11 (December)
+    nextMonth: () =>
+        set((s) => {
+            if (s.selectedMonth === 11) {
+                return { selectedMonth: 0 };
+            }
+            return { selectedMonth: s.selectedMonth + 1 };
+        }),
+    prevMonth: () =>
+        set((s) => {
+            if (s.selectedMonth === 0) {
+                return { selectedMonth: 11 };
+            }
+
+            return { selectedMonth: s.selectedMonth - 1 };
+        }),
+    transactions: log,
+    editSavings: (money) => set(() => ({ savings: money })),
+    editIncome: (money) => set(() => ({ income: money })),
     addTransaction: (props: Omit<TransactionProp, "id">) =>
         set((state) => {
             const newTransaction: TransactionProp = { ...props, id: crypto.randomUUID() };
-            return { transactions: state.transactions };
+            console.log(newTransaction);
+            return { transactions: [...state.transactions, newTransaction] };
         }),
     removeTransaction: (id) =>
         set((state) => {
@@ -57,5 +138,5 @@ type TransactionProp = {
     amount: number;
     name: string;
     date: Date;
-    type: "Expense" | "income";
+    type: "Expense" | "Income";
 };
