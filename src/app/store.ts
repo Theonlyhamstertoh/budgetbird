@@ -65,6 +65,8 @@ interface BudgetState {
     categories: CategoryProps[];
     transactions: TransactionProp[];
     selectedMonth: number;
+    prevMonth: () => void;
+    nextMonth: () => void;
     editSavings: (money: number) => void;
     editIncome: (money: number) => void;
     addTransaction: (props: Omit<TransactionProp, "id">) => void;

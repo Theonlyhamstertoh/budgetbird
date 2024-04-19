@@ -2,8 +2,6 @@
 import { useState, useEffect } from "react";
 import OverviewCard from "@/src/components/transaction/overview-card";
 import TransactionsTopBar from "@/src/components/transactions-top-bar";
-import { Button } from "@/src/components/ui/button";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useBudgetStore } from "../../store";
 
 type Transaction = {

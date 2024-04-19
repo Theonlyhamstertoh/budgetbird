@@ -24,7 +24,9 @@ export function CategoryDrawer({ open, children }: { open?: boolean; children: R
 
     return (
         <Drawer>
-            <DrawerTrigger className="w-full">{children}</DrawerTrigger>
+            <DrawerTrigger className="w-full" asChild>
+                {children}
+            </DrawerTrigger>
             <DrawerContent className="bg-[#FAF8F5] flex justify-center items-center">
                 <DrawerHeader className="max-w-md w-full ">
                     <DrawerTitle className="text-2xl text-center">Add new Category</DrawerTitle>
