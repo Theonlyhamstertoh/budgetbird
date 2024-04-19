@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import BudgetBird from "@/src/components/budget-bird";
 import OnboardingBar from "@/src/components/onboard-bar";

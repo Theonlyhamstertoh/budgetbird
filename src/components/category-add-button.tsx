@@ -19,7 +19,7 @@ function AddCategoryButton({ emoji, label, onClick, className }: AddCategoryButt
             onClick={onClick}
             variant={"secondary"}
             className={cn(
-                "bg-white h-fit p-2 px-4 border-2 border-zinc-200/70 rounded-lg flex items-center justify-between",
+                "bg-white h-fit w-full p-2 px-4 border-2 border-zinc-200/70 rounded-lg flex items-center justify-between",
                 className
             )}
             style={{ boxShadow: "0px 4px 0px 0 rgba(0,0,0,0.05)" }}

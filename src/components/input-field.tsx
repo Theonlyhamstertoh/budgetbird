@@ -9,8 +9,9 @@ interface InputFields {
     icon?: string;
     emoji?: string;
     disabled?: boolean;
+    value?: string;
 }
-function InputField({ label, icon, emoji, placeholder, disabled }: InputFields) {
+function InputField({ label, icon, emoji, placeholder, disabled, value }: InputFields) {
     return (
         <div
             className="bg-white border-2 pl-3 w-full border-zinc-200/70 rounded-lg flex items-center"
@@ -24,6 +25,7 @@ function InputField({ label, icon, emoji, placeholder, disabled }: InputFields) 
             <Input
                 className="border-none placeholder:font-medium placeholder:text-stone-800"
                 disabled={disabled}
+                value={value}
                 placeholder={typeof placeholder === "number" ? `$${placeholder.toLocaleString()}` : placeholder}
             />
         </div>
