@@ -197,7 +197,9 @@ function TransactionsTopBar({ selectedMonth, prevMonth, nextMonth }: Transaction
                                 </SelectTrigger>
                                 <SelectContent>
                                     {categories.map((cat) => (
-                                        <SelectItem value={cat.id}>{cat.name}</SelectItem>
+                                        <SelectItem key={cat.id} value={cat.id}>
+                                            {cat.name}
+                                        </SelectItem>
                                     ))}
                                 </SelectContent>
                             </Select>
