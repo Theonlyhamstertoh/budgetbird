@@ -88,7 +88,7 @@ export default function Page() {
 
                         <AddCategoryButton
                             emoji={emojiObject.airplane}
-                            label="traveling"
+                            label="Traveling"
                             name="traveling"
                             onClick={handleAddCategoryClick}
                         />

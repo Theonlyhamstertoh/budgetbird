@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/src/lib/utils";
 import Image from "next/image";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { BudgetCardWithProgressBar, BudgetCardWithoutProgressBar } from "@/src/components/budget-progress";
 import TotalMonthSpendingCard from "@/src/components/total-month-spending";
@@ -11,6 +11,9 @@ import TransactionsTopBar from "@/src/components/transactions-top-bar";
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js/auto";
 import { useBudgetStore } from "../../store";
+import { Button } from "@/src/components/ui/button";
+import { PlusIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Dashboard() {
     const { transactions, categories } = useBudgetStore(({ transactions, categories }) => ({
@@ -88,10 +91,31 @@ export default function Dashboard() {
                 </div>
 
                 {/* Heading for the budget grid */}
-                <h2 className="budgets-heading">Budgets</h2>
+                <h2 className="font-bold text-lg flex gap-2 items-center mt-10 text-stone-600">
+                    Budgets
+                    <Button variant="outline" asChild>
+                        <Link href="/onboard/categories">
+                            Add Category <PlusIcon className="ml-2 size-4" />
+                        </Link>
+                    </Button>
+                </h2>
 
                 {/* Container for the budget card grid */}
-                <div className=""></div>
+                <div className="flex w-full flex-wrap gap-4 p-8 pl-0">
+                    <Suspense>
+                        {/* MAP ARRAY HERE */}
+                        {categories.map((c) => (
+                            <BudgetCardWithProgressBar
+                                key={c.id}
+                                id={c.id}
+                                category={c.name}
+                                budget={c.budget}
+                                spent={categoryTotals[c.name] !== undefined ? categoryTotals[c.name] : 0}
+                                emoji={c.emoji}
+                            />
+                        ))}
+                    </Suspense>
+                </div>
             </div>
         </div>
     );

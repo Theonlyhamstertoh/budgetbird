@@ -31,8 +31,16 @@ type BudgetProps = {
  * @returns budget state with progress bar.
  *
  */
-function BudgetCardWithProgressBar({ category, id, budget, spent, emoji }: BudgetProps) {
-    const percentageSpent = Math.min((spent / budget) * 100, 1);
+function BudgetCardWithProgressBar(props: BudgetProps) {
+    const percentageSpent = Math.min((props.spent / props.budget) * 100, 100);
+
+    const [openDrawer, setOpenDrawer] = useState(false);
+
+    const [name, setName] = useState(props.category);
+    const [budget, setBudget] = useState(props.budget);
+    const [emoji, setEmoji] = useState(props.emoji);
+
+    const [editCategory, removeCategory] = useBudgetStore((state) => [state.editCategory, state.removeCategory]);
 
     return (
         <div
@@ -41,14 +49,62 @@ function BudgetCardWithProgressBar({ category, id, budget, spent, emoji }: Budge
         >
             <div className=" flex justify-between">
                 <Emoji unified={emoji} emojiStyle={EmojiStyle.TWITTER} size={25} />
-                {/* <img src="/pencil-alt.png" alt="Exit Logo" className="exit-logo w-6 h-6 relative" /> */}
-                <Edit className="size-5 text-stone-500" />
+                <Drawer open={openDrawer} onOpenChange={setOpenDrawer}>
+                    <DrawerTrigger>
+                        <Edit className="size-5 text-stone-500" />
+                    </DrawerTrigger>
+                    <DrawerContent className="bg-[#FAF8F5] flex justify-center items-center">
+                        <DrawerHeader className="max-w-md w-full ">
+                            <DrawerTitle className="text-2xl text-center">Add new Category</DrawerTitle>
+                            <DrawerDescription>
+                                <div className="flex justify-evenly my-3">
+                                    <div className="text-center">
+                                        <div className="text-base font-semibold  text-black">Total Budget</div>
+                                        <div className="text-base  text-black">$2000</div>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="text-base font-semibold  text-black">Remaining Budget</div>
+                                        <div className="text-base  text-black">$200</div>
+                                    </div>
+                                </div>
+                            </DrawerDescription>
+                        </DrawerHeader>
+                        <DrawerFooter className="max-w-md w-full">
+                            {/* <Button className="w-full">Save</Button> */}
+                            <InputField label="Category Name" value={name} setValue={setName} />
+                            <InputField label="Budget" value={budget} setValue={setBudget} />
+                            <EmojiInputField label="Choose Icon" emoji={emoji} setEmoji={setEmoji} />
+                            <button
+                                onClick={() => {
+                                    editCategory(name, emoji, budget, props.id);
+                                    setOpenDrawer(false);
+                                }}
+                                className="rounded-xl h-12 py-3 mt-8 bg-emerald-700 border-[1.5px] border-emerald-700 text-white font-medium"
+                                style={{ boxShadow: "0px 4px 0px 0 #03593e" }}
+                            >
+                                Edit Category
+                            </button>
+
+                            <DrawerClose>
+                                <button
+                                    className="rounded-xl h-12 py-3 my-2 w-full bg-white border-[1.5px] font-medium border-zinc-200"
+                                    style={{ boxShadow: "0px 4px 0px 0 rgba(0,0,0,0.05)" }}
+                                >
+                                    Cancel
+                                </button>
+                            </DrawerClose>
+                            <button className="text-red-400 mt-6" onClick={() => removeCategory(props.id)}>
+                                Remove Category
+                            </button>
+                        </DrawerFooter>
+                    </DrawerContent>
+                </Drawer>
             </div>
-            <h3 className="text-justify text-zinc-600 text-xl font-semibold pt-3">{category}</h3>
+            <h3 className="text-justify text-zinc-600 text-xl font-semibold pt-3">{props.category}</h3>
             <p className=" text-sm text-justify font-medium text-zinc-600">Budget: ${budget}</p>
             <Progress value={percentageSpent} className="shrink-0 mt-2" />
-            <div className="flex justify-between w-full text-stone-400 text-sm mt-2">
-                <div className="">${spent.toFixed(2)}</div>
+            <div className="flex justify-between w-full text-stone-500 text-sm mt-2">
+                <div className="">${props.spent.toFixed(2)}</div>
                 <div className="">${budget.toFixed(2)}</div>
             </div>
         </div>
