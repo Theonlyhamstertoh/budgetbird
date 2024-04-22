@@ -10,7 +10,7 @@ export default function RootLayout({
     return (
         <div className="flex">
             <DashboardSidebar />
-            {children}
+            <div className="w-full max-h-screen overflow-y-scroll">{children}</div>
         </div>
     );
 }

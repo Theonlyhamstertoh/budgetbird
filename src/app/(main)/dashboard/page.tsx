@@ -16,12 +16,19 @@ import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 
 export default function Dashboard() {
-    const { transactions, categories } = useBudgetStore(({ transactions, categories }) => ({
-        transactions,
-        categories,
-    }));
+    const { transactions, categories, savings, income } = useBudgetStore(
+        ({ transactions, categories, savings, income }) => ({
+            transactions,
+            savings,
+            income,
+            categories,
+        })
+    );
 
     const expenseTransactions = transactions.filter((transaction) => transaction.type === "Expense");
+
+    const latestTransaction = expenseTransactions[expenseTransactions.length - 1];
+    let totalSpending = 0;
 
     const categoryTotals: Record<string, number> = expenseTransactions.reduce(
         (totals: Record<string, number>, transactions) => {
@@ -31,6 +38,10 @@ export default function Dashboard() {
         },
         {}
     );
+
+    for (const key in categoryTotals) {
+        totalSpending += categoryTotals[key];
+    }
 
     // Extract labels (categories) and amounts from the grouped data
     const labels: string[] = Object.keys(categoryTotals);
@@ -85,8 +96,12 @@ export default function Dashboard() {
 
                     {/* Top right content */}
                     <div className="w-full space-y-6">
-                        <RecentTransaction name="Walmart" category="Groceries" cost={60} />
-                        <TotalMonthSpendingCard spent={580} budget={3000} />
+                        <RecentTransaction
+                            name={latestTransaction.name}
+                            category={latestTransaction.category}
+                            cost={latestTransaction.amount}
+                        />
+                        <TotalMonthSpendingCard spent={totalSpending} budget={Number(income) - Number(savings)} />
                     </div>
                 </div>
 

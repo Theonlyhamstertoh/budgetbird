@@ -37,7 +37,7 @@ function BudgetCardWithProgressBar(props: BudgetProps) {
     const [openDrawer, setOpenDrawer] = useState(false);
 
     const [name, setName] = useState(props.category);
-    const [budget, setBudget] = useState(props.budget);
+    const [budget, setBudget] = useState(Number(props.budget));
     const [emoji, setEmoji] = useState(props.emoji);
 
     const [editCategory, removeCategory] = useBudgetStore((state) => [state.editCategory, state.removeCategory]);

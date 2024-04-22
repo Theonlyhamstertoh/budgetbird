@@ -144,7 +144,7 @@ export const useBudgetStore = create<BudgetState>()((set) => ({
                 name,
                 emoji,
                 budget,
-                id: crypto.randomUUID(),
+                id: name,
             };
             console.log(newCategory);
             return { categories: [...state.categories, newCategory] };
