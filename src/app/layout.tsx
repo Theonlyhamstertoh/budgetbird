@@ -6,6 +6,9 @@ import { plus_jakarta_sans } from "./fonts";
 export const metadata: Metadata = {
     title: "BudgetBird",
     description: "Start tracking where your money is going with BudgetBird",
+    icons: {
+        icon: "/budgetbird.png",
+    },
 };
 
 export default function RootLayout({
