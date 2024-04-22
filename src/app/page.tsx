@@ -3,6 +3,9 @@
 import Link from "next/link";
 import BudgetBird from "../components/budget-bird";
 import { Button } from "../components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
+import { GithubIcon, LinkedinIcon } from "../components/social-icons/icons";
 
 export default function HomePage() {
     return (
@@ -44,16 +47,12 @@ export default function HomePage() {
                 ></video>
             </div>
 
-            <Component />
+            <TeamCredits />
         </div>
     );
 }
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/src/components/ui/avatar";
-import { Card, CardContent, CardHeader, CardTitle } from "@/src/components/ui/card";
-import { GithubIcon, LinkedinIcon } from "../components/social-icons/icons";
-
-export function Component() {
+function TeamCredits() {
     return (
         <Card className="mx-auto p-24 bg-[#FAF8F5]">
             <CardHeader>
