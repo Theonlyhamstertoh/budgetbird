@@ -18,8 +18,8 @@ export default function HomePage() {
                         The best money tracker app
                     </h1>
                     <h1 className="text-emerald-500 text-bold text-3xl text-center  text-balance">
-                        Manage your finances confidently. Monitor spending, budgets, create categories limits, and
-                        savings effortlessly.
+                        Manage your finances confidently. Monitor spending, budgets, categories limits, and savings
+                        effortlessly.
                     </h1>
 
                     {/* <button
