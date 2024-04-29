@@ -17,7 +17,7 @@ import {
     DrawerTrigger,
 } from "@/src/components/ui/drawer";
 
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 
 import { Input } from "@/src/components/ui/input";
 import Image from "next/image";
@@ -47,9 +47,25 @@ export default function Page() {
     const [openDrawer, setOpenDrawer] = useState(false);
     const [name, setName] = useState("");
     const [budget, setBudget] = useState(0);
+    const [totalBudget, setTotalBudget] = useState(0);
+    const [remainingBudget, setRemainingBudget] = useState(0);
     const [emoji, setEmoji] = useState("");
-    const { categories, addCategory } = useBudgetStore(({ categories, addCategory }) => ({ categories, addCategory }));
+    const [addCategory, income, savings, categories] = useBudgetStore((s) => [
+        s.addCategory,
+        s.income,
+        s.savings,
+        s.categories,
+    ]);
 
+    useEffect(() => {
+        const totalBudget = categories.reduce((prev, current) => {
+            console.log(Number(current.budget) + prev);
+            return prev + Number(current.budget);
+        }, 0);
+
+        setRemainingBudget(Number(income) - Number(savings) - totalBudget);
+        setTotalBudget(totalBudget);
+    }, [budget, categories]);
     return (
         <div className="bg-[#FAF8F5] grid grid-rows-[1fr_auto] grid-cols-1 h-screen  ">
             <div className="pt-8 overflow-y-scroll pb-28">
@@ -137,11 +153,11 @@ export default function Page() {
                             <div className="flex justify-evenly my-3">
                                 <div className="text-center">
                                     <div className="text-base font-semibold  text-black">Total Budget</div>
-                                    <div className="text-base  text-black">$2000</div>
+                                    <div className="text-base  text-black">{Number(income) - Number(savings)}</div>
                                 </div>
                                 <div className="text-center">
                                     <div className="text-base font-semibold  text-black">Remaining Budget</div>
-                                    <div className="text-base  text-black">$200</div>
+                                    <div className="text-base  text-black">{remainingBudget}</div>
                                 </div>
                             </div>
                         </DrawerDescription>
@@ -175,7 +191,11 @@ export default function Page() {
                     </DrawerFooter>
                 </DrawerContent>
             </Drawer>
-            <OnboardingBar prevHref="/onboard/income" nextHref="/onboard/completion" />
+            <OnboardingBar
+                disabled={Number(income) - Number(savings) - Number(totalBudget) - Number(budget) < 0}
+                prevHref="/onboard/income"
+                nextHref="/onboard/completion"
+            />
         </div>
     );
 }

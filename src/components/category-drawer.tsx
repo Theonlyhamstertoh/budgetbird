@@ -11,7 +11,7 @@ import {
     DrawerTrigger,
 } from "@/src/components/ui/drawer";
 
-import React, { use, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { EmojiInputField } from "./emoji-input-field";
 import { useBudgetStore } from "../app/store";
 
@@ -19,9 +19,21 @@ export function CategoryDrawer({ open, children }: { open?: boolean; children: R
     const [name, setName] = useState("");
     const [budget, setBudget] = useState(0);
     const [emoji, setEmoji] = useState("");
+    const [totalBudget, setTotalBudget] = useState(0);
 
-    const addCategory = useBudgetStore((state) => state.addCategory);
+    const [addCategory, income, savings, categories] = useBudgetStore((s) => [
+        s.addCategory,
+        s.income,
+        s.savings,
+        s.categories,
+    ]);
 
+    useEffect(() => {
+        const totalBudget = categories.reduce((prev, current) => {
+            return prev + current.budget;
+        }, 0);
+        setTotalBudget(totalBudget);
+    }, []);
     return (
         <Drawer>
             <DrawerTrigger className="w-full" asChild>
@@ -34,11 +46,13 @@ export function CategoryDrawer({ open, children }: { open?: boolean; children: R
                         <div className="flex justify-evenly my-3">
                             <div className="text-center">
                                 <p className="text-base font-semibold  text-black">Total Budget</p>
-                                <p className="text-base  text-black">$2000</p>
+                                <p className="text-base  text-black">{Number(income) + Number(savings)}</p>
                             </div>
                             <div className="text-center">
                                 <p className="text-base font-semibold  text-black">Remaining Budget</p>
-                                <p className="text-base  text-black">$200</p>
+                                <p className="text-base  text-black">
+                                    {Number(income) + Number(savings) - totalBudget - budget}
+                                </p>
                             </div>
                         </div>
                     </DrawerDescription>

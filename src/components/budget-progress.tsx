@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Progress } from "./ui/progress";
 import { Edit, PencilIcon } from "lucide-react";
 import { Emoji, EmojiStyle } from "emoji-picker-react";
@@ -32,16 +32,34 @@ type BudgetProps = {
  *
  */
 function BudgetCardWithProgressBar(props: BudgetProps) {
-    const percentageSpent = Math.min((props.spent / props.budget) * 100, 100);
+    const percentageSpent = (props.spent / props.budget) * 100;
 
     const [openDrawer, setOpenDrawer] = useState(false);
 
     const [name, setName] = useState(props.category);
-    const [budget, setBudget] = useState(Number(props.budget));
+    const [budget, setBudget] = useState(props.budget);
     const [emoji, setEmoji] = useState(props.emoji);
 
     const [editCategory, removeCategory] = useBudgetStore((state) => [state.editCategory, state.removeCategory]);
 
+    const [totalBudget, setTotalBudget] = useState(0);
+    const [remainingBudget, setRemainingBudget] = useState(0);
+    const [addCategory, income, savings, categories] = useBudgetStore((s) => [
+        s.addCategory,
+        s.income,
+        s.savings,
+        s.categories,
+    ]);
+
+    useEffect(() => {
+        const totalBudget = categories.reduce((prev, current) => {
+            console.log(Number(current.budget) + prev);
+            return prev + Number(current.budget);
+        }, 0);
+
+        setRemainingBudget(Number(income) - Number(savings) - totalBudget);
+        setTotalBudget(totalBudget);
+    }, [budget, categories]);
     return (
         <div
             className="bg-[#FAFAFA] rounded-md border-zinc-200/70 border  w-56 h-[162px] p-[15px] flex flex-col"
@@ -60,11 +78,11 @@ function BudgetCardWithProgressBar(props: BudgetProps) {
                                 <div className="flex justify-evenly my-3">
                                     <div className="text-center">
                                         <div className="text-base font-semibold  text-black">Total Budget</div>
-                                        <div className="text-base  text-black">$2000</div>
+                                        <div className="text-base  text-black">{Number(income) - Number(savings)}</div>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-base font-semibold  text-black">Remaining Budget</div>
-                                        <div className="text-base  text-black">$200</div>
+                                        <div className="text-base  text-black">{remainingBudget}</div>
                                     </div>
                                 </div>
                             </DrawerDescription>
@@ -122,6 +140,25 @@ function BudgetCardWithoutProgressBar(props: BudgetProps) {
 
     const [editCategory, removeCategory] = useBudgetStore((state) => [state.editCategory, state.removeCategory]);
 
+    const [totalBudget, setTotalBudget] = useState(0);
+    const [remainingBudget, setRemainingBudget] = useState(0);
+    const [addCategory, income, savings, categories] = useBudgetStore((s) => [
+        s.addCategory,
+        s.income,
+        s.savings,
+        s.categories,
+    ]);
+
+    useEffect(() => {
+        const totalBudget = categories.reduce((prev, current) => {
+            console.log(Number(current.budget) + prev);
+            return prev + Number(current.budget);
+        }, 0);
+
+        setRemainingBudget(Number(income) - Number(savings) - totalBudget);
+        setTotalBudget(totalBudget);
+    }, [budget, categories]);
+
     return (
         <div
             className="bg-[#FAFAFA] rounded-md border-zinc-200/70 border  w-56 h-[162px] p-[15px] flex flex-col"
@@ -140,11 +177,11 @@ function BudgetCardWithoutProgressBar(props: BudgetProps) {
                                 <div className="flex justify-evenly my-3">
                                     <div className="text-center">
                                         <div className="text-base font-semibold  text-black">Total Budget</div>
-                                        <div className="text-base  text-black">$2000</div>
+                                        <div className="text-base  text-black">{Number(income) - Number(savings)}</div>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-base font-semibold  text-black">Remaining Budget</div>
-                                        <div className="text-base  text-black">$200</div>
+                                        <div className="text-base  text-black">{remainingBudget}</div>
                                     </div>
                                 </div>
                             </DrawerDescription>
