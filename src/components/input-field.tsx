@@ -31,11 +31,11 @@ function InputField({ label, icon, emoji, placeholder, disabled, value, setValue
                 className="border-none placeholder:font-medium text-md placeholder:text-stone-800"
                 disabled={disabled}
                 value={value}
-                type={"text"}
+                type={type}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                     const numericInput = e.target.value.replace(/\D/g, "");
                     if (type === "number") {
-                        setValue!(numericInput);
+                        setValue!(Math.abs(Number(numericInput)));
                     } else if (type === "text") {
                         setValue!(e.target.value);
                     }

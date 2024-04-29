@@ -24,9 +24,9 @@ import {
     DrawerTrigger,
 } from "@/src/components/ui/drawer";
 import InputField from "./input-field";
-import { EmojiInputField } from "./emoji-input-field";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { useBudgetStore } from "../app/store";
+import DatePicker from "./date-picker";
 
 interface TransactionsTopBarProps {
     selectedMonth: number;
@@ -132,13 +132,8 @@ function TransactionsTopBar({ selectedMonth, prevMonth, nextMonth }: Transaction
                                 </SelectContent>
                             </Select>
 
-                            <InputField
-                                type="date"
-                                label="Date"
-                                placeholder=""
-                                value={date.toISOString().split("T")[0]}
-                                setValue={setDate}
-                            />
+                            <DatePicker date={date} setDate={setDate} />
+
                             <DrawerClose>
                                 <button
                                     onClick={() => {
@@ -198,27 +193,32 @@ function TransactionsTopBar({ selectedMonth, prevMonth, nextMonth }: Transaction
                                     <SelectValue placeholder="Select Category" className="" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    {categories.map((cat) => (
-                                        <SelectItem key={cat.id} value={cat.id}>
-                                            {cat.name}
-                                        </SelectItem>
-                                    ))}
+                                    {categories.map(
+                                        (cat) =>
+                                            cat.name !== "Income" && (
+                                                <SelectItem key={cat.id} value={cat.id}>
+                                                    {cat.name}
+                                                </SelectItem>
+                                            )
+                                    )}
                                 </SelectContent>
                             </Select>
 
-                            <InputField
+                            {/* <InputField
                                 type="date"
                                 label="Date"
                                 placeholder=""
-                                value={date.toISOString().split("T")[0]}
+                                // value={date.toISOString().split("T")[0]}
                                 setValue={setDate}
-                            />
+                            /> */}
+
+                            <DatePicker date={date} setDate={setDate} />
                             <DrawerClose>
                                 <button
                                     onClick={() => {
                                         addTransaction({
                                             category,
-                                            amount,
+                                            amount: Math.abs(Number(amount)),
                                             date,
                                             name,
                                             type: "Expense",

@@ -90,7 +90,7 @@ export default function Dashboard() {
                         className="bg-white rounded-md p-12 border-stone-200/90 border shrink-0 w-[500px] h-[400px] flex  flex-col justify-center h-fit"
                         style={{ boxShadow: "0px 6px 0px 0 rgba(0,0,0,0.05)" }}
                     >
-                        <h3 className="font-semibold text-stone-700 text-lg">Monthly Spendings</h3>
+                        <h3 className="font-semibold text-stone-700 text-lg">Total Spendings</h3>
                         <Pie data={data} clas options={options} />
                     </div>
 
@@ -119,16 +119,19 @@ export default function Dashboard() {
                 <div className="flex w-full flex-wrap gap-4 p-8 pl-0">
                     <Suspense>
                         {/* MAP ARRAY HERE */}
-                        {categories.map((c) => (
-                            <BudgetCardWithProgressBar
-                                key={c.id}
-                                id={c.id}
-                                category={c.name}
-                                budget={c.budget}
-                                spent={categoryTotals[c.name] !== undefined ? categoryTotals[c.name] : 0}
-                                emoji={c.emoji}
-                            />
-                        ))}
+                        {categories.map((c) => {
+                            if (c.name === "Income") return;
+                            return (
+                                <BudgetCardWithProgressBar
+                                    key={c.id}
+                                    id={c.id}
+                                    category={c.name}
+                                    budget={c.budget}
+                                    spent={categoryTotals[c.name] !== undefined ? categoryTotals[c.name] : 0}
+                                    emoji={c.emoji}
+                                />
+                            );
+                        })}
                     </Suspense>
                 </div>
             </div>

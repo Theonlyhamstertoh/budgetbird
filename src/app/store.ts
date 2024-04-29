@@ -1,5 +1,6 @@
 import { create } from "zustand";
 
+import { persist, createJSONStorage } from "zustand/middleware";
 const log: TransactionProp[] = [
     {
         date: new Date("02/15/2024"),
@@ -75,91 +76,76 @@ interface BudgetState {
     editCategory: (name: string, emoji: string, budget: number, id: string) => void;
     removeCategory: (id: string) => void;
 }
-export const useBudgetStore = create<BudgetState>()((set) => ({
-    savings: 0,
-    income: 0,
-    categories: [
-        {
-            id: "Salary",
-            name: "Income",
-            emoji: "1f4b0",
-            budget: 10000,
-        },
-        {
-            id: "Restaurant",
-            name: "Restaurant",
-            emoji: "1f377",
-            budget: 300,
-        },
-        {
-            id: "Entertainment",
-            name: "Entertainment",
-            emoji: "1f37f",
-            budget: 300,
-        },
-        {
-            id: "Subscription",
-            name: "Subscription",
-            emoji: "1f4b3",
-            budget: 300,
-        },
-    ],
-    selectedMonth: new Date().getMonth(), // value from 0 (January) to 11 (December)
-    nextMonth: () =>
-        set((s) => {
-            if (s.selectedMonth === 11) {
-                return { selectedMonth: 0 };
-            }
-            return { selectedMonth: s.selectedMonth + 1 };
-        }),
-    prevMonth: () =>
-        set((s) => {
-            if (s.selectedMonth === 0) {
-                return { selectedMonth: 11 };
-            }
+export const useBudgetStore = create<BudgetState>()(
+    persist(
+        (set) => ({
+            savings: 0,
+            income: 0,
+            categories: [],
+            transactions: [],
+            selectedMonth: new Date().getMonth(), // value from 0 (January) to 11 (December)
+            nextMonth: () =>
+                set((s) => {
+                    if (s.selectedMonth === 11) {
+                        return { selectedMonth: 0 };
+                    }
+                    return { selectedMonth: s.selectedMonth + 1 };
+                }),
+            prevMonth: () =>
+                set((s) => {
+                    if (s.selectedMonth === 0) {
+                        return { selectedMonth: 11 };
+                    }
 
-            return { selectedMonth: s.selectedMonth - 1 };
+                    return { selectedMonth: s.selectedMonth - 1 };
+                }),
+            editSavings: (money) => set(() => ({ savings: money === undefined ? 0 : money })),
+            editIncome: (money) => set(() => ({ income: money === undefined ? 0 : money })),
+            addTransaction: (props: Omit<TransactionProp, "id">) =>
+                set((state) => {
+                    const newTransaction: TransactionProp = {
+                        ...props,
+                        id: crypto.randomUUID(),
+                    };
+                    console.log(newTransaction);
+                    newTransaction.amount = Number(newTransaction.amount);
+                    return { transactions: [...state.transactions, newTransaction] };
+                }),
+            removeTransaction: (id) =>
+                set((state) => {
+                    const filteredTransactions = state.transactions.filter((transact) => transact.id !== id);
+                    return { transactions: filteredTransactions };
+                }),
+            addCategory: (name, emoji, budget) =>
+                set((state) => {
+                    const newCategory: CategoryProps = {
+                        name,
+                        emoji,
+                        budget,
+                        id: crypto.randomUUID(),
+                    };
+                    console.log(newCategory);
+                    return { categories: [...state.categories, newCategory] };
+                }),
+            editCategory: (name, emoji, budget, id) =>
+                set((state) => {
+                    const editedCategories = state.categories.map((cat) =>
+                        cat.id === id ? { name, emoji, budget, id } : cat
+                    );
+                    return { categories: editedCategories };
+                }),
+            removeCategory: (id) =>
+                set((state) => {
+                    const filteredCategories = state.categories.filter((cat) => cat.id !== id);
+                    return { categories: filteredCategories };
+                }),
         }),
-    transactions: log,
-    editSavings: (money) => set(() => ({ savings: money === undefined ? 0 : money })),
-    editIncome: (money) => set(() => ({ income: money === undefined ? 0 : money })),
-    addTransaction: (props: Omit<TransactionProp, "id">) =>
-        set((state) => {
-            const newTransaction: TransactionProp = {
-                ...props,
-                id: crypto.randomUUID(),
-            };
-            console.log(newTransaction);
-            newTransaction.amount = Number(newTransaction.amount);
-            return { transactions: [...state.transactions, newTransaction] };
-        }),
-    removeTransaction: (id) =>
-        set((state) => {
-            const filteredTransactions = state.transactions.filter((transact) => transact.id !== id);
-            return { transactions: filteredTransactions };
-        }),
-    addCategory: (name, emoji, budget) =>
-        set((state) => {
-            const newCategory: CategoryProps = {
-                name,
-                emoji,
-                budget,
-                id: name,
-            };
-            console.log(newCategory);
-            return { categories: [...state.categories, newCategory] };
-        }),
-    editCategory: (name, emoji, budget, id) =>
-        set((state) => {
-            const editedCategories = state.categories.map((cat) => (cat.id === id ? { name, emoji, budget, id } : cat));
-            return { categories: editedCategories };
-        }),
-    removeCategory: (id) =>
-        set((state) => {
-            const filteredCategories = state.categories.filter((cat) => cat.id !== id);
-            return { categories: filteredCategories };
-        }),
-}));
+        {
+            name: "budget-storage", // name of the item in the storage (must be unique)
+            storage: createJSONStorage(() => localStorage),
+        }
+    )
+);
 
 type CategoryProps = {
     id: string;

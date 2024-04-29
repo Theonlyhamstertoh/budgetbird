@@ -15,7 +15,7 @@ export default function HomePage() {
                     <BudgetBird className="text-emerald-400 text-5xl mx-auto w-fit" />
 
                     <h1 className="text-bold text-6xl font-black text-emerald-200 text-balance">
-                        The best money tracker app
+                        Your Personal Finance Tracker App
                     </h1>
                     <h1 className="text-emerald-500 text-bold text-3xl text-center  text-balance">
                         Manage your finances confidently. Monitor spending, budgets, categories limits, and savings

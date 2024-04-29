@@ -112,16 +112,19 @@ export default function Page() {
                     <div className="w-[330px] h-[0px] border-2 border-stone-200 mt-16 mb-8"></div>
                     <div className=" grid md:grid-cols-3 gap-10 pb-8">
                         {/* MAP ARRAY HERE */}
-                        {categories.map((c) => (
-                            <BudgetCardWithoutProgressBar
-                                key={c.id}
-                                id={c.id}
-                                category={c.name}
-                                budget={c.budget}
-                                spent={0}
-                                emoji={c.emoji}
-                            />
-                        ))}
+                        {categories.map(
+                            (c) =>
+                                c.name !== "Income" && (
+                                    <BudgetCardWithoutProgressBar
+                                        key={c.id}
+                                        id={c.id}
+                                        category={c.name}
+                                        budget={c.budget}
+                                        spent={0}
+                                        emoji={c.emoji}
+                                    />
+                                )
+                        )}
                     </div>
                 </div>
             </div>

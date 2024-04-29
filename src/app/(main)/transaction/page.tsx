@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import OverviewCard from "@/src/components/transaction/overview-card";
 import TransactionsTopBar from "@/src/components/transactions-top-bar";
 import { useBudgetStore } from "../../store";
+import { toDate } from "date-fns";
 
 const TransactionPage = () => {
     const { transactions, categories } = useBudgetStore(({ transactions, categories }) => ({
@@ -35,7 +36,7 @@ const TransactionPage = () => {
 
     useEffect(() => {
         const filtered = transactions.filter((transaction) => {
-            return transaction.date.getMonth() === selectedMonth;
+            return toDate(transaction.date).getMonth() === selectedMonth;
         });
         setFilteredTransactions(filtered);
     }, [transactions, selectedMonth]);
@@ -86,10 +87,10 @@ const TransactionPage = () => {
                                     <div className="flex px-10 justify-between items-center p-2 border-t">
                                         <div className="flex mx-4 w-1/6">
                                             <h3 className="font-semibold text-neutral-600 pl-10 px-1 py-2">
-                                                {String(transaction.date.getDate()).padStart(2, "0")}
+                                                {String(toDate(transaction.date).getDate()).padStart(2, "0")}
                                             </h3>
                                             <h3 className="font-semibold text-neutral-600 px-1 py-2">
-                                                {getMonthName(transaction.date.getMonth())}
+                                                {getMonthName(toDate(transaction.date).getMonth())}
                                             </h3>
                                         </div>
 
