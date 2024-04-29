@@ -14,7 +14,7 @@ function RecentTransaction({ name, category, cost }: RecentTransactionProps) {
         >
             <h3 className="font-semibold text-stone-700 text-lg">Recent Transaction</h3>
             <div className="">
-                <p className="text-2xl text-stone-800 font-medium">{name}</p>
+                <p className="text-2xl text-stone-800 font-medium">{name ? name : ""}</p>
                 <div className="flex justify-between mt-2 items-center">
                     <p className="bg-stone-200 p-1  px-3 rounded-md">{category}</p>
                     <p className="text-red-600 font-medium">-{cost.toFixed(2)}</p>

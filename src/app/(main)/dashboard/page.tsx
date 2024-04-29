@@ -91,16 +91,18 @@ export default function Dashboard() {
                         style={{ boxShadow: "0px 6px 0px 0 rgba(0,0,0,0.05)" }}
                     >
                         <h3 className="font-semibold text-stone-700 text-lg">Total Spendings</h3>
-                        <Pie data={data} clas options={options} />
+                        <Pie data={data} options={options} />
                     </div>
 
                     {/* Top right content */}
                     <div className="w-full space-y-6">
-                        <RecentTransaction
-                            name={latestTransaction.name}
-                            category={latestTransaction.category}
-                            cost={latestTransaction.amount}
-                        />
+                        {latestTransaction && (
+                            <RecentTransaction
+                                name={latestTransaction.name}
+                                category={latestTransaction.category}
+                                cost={latestTransaction.amount}
+                            />
+                        )}
                         <TotalMonthSpendingCard spent={totalSpending} budget={Number(income) - Number(savings)} />
                     </div>
                 </div>
