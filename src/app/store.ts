@@ -121,8 +121,8 @@ export const useBudgetStore = create<BudgetState>()((set) => ({
             return { selectedMonth: s.selectedMonth - 1 };
         }),
     transactions: log,
-    editSavings: (money) => set(() => ({ savings: money })),
-    editIncome: (money) => set(() => ({ income: money })),
+    editSavings: (money) => set(() => ({ savings: money === undefined ? 0 : money })),
+    editIncome: (money) => set(() => ({ income: money === undefined ? 0 : money })),
     addTransaction: (props: Omit<TransactionProp, "id">) =>
         set((state) => {
             const newTransaction: TransactionProp = {

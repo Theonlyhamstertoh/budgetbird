@@ -28,9 +28,21 @@ export default function CompletionPage() {
                 <div className="space-y-4">
                     <div className="text-md  my-4 text-left">What is your income and savings?</div>
 
-                    <InputField label={"Income"} icon="/wallet.png" setValue={editIncome} />
+                    <InputField
+                        type="number"
+                        value={income}
+                        label={"Income"}
+                        icon="/wallet.png"
+                        setValue={editIncome}
+                    />
 
-                    <InputField label={"Savings Target"} value={savings} icon="/piggy.png" setValue={editSavings} />
+                    <InputField
+                        type="number"
+                        label={"Savings Target"}
+                        value={savings}
+                        icon="/piggy.png"
+                        setValue={editSavings}
+                    />
                     <div className="h-20 items-center  flex justify-center">
                         <EqualIcon />
                     </div>
@@ -43,7 +55,11 @@ export default function CompletionPage() {
                 </div>
             </div>
 
-            <OnboardingBar prevHref="/" nextHref="/onboard/categories" />
+            <OnboardingBar
+                disabled={Number(income) - Number(savings) < 0}
+                prevHref="/"
+                nextHref="/onboard/categories"
+            />
         </div>
     );
 }
