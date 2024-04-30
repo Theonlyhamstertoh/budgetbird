@@ -116,24 +116,6 @@ function TransactionsTopBar({ selectedMonth, prevMonth, nextMonth }: Transaction
                         <DrawerFooter className="max-w-md w-full">
                             <InputField label="Name" placeholder="" value={name} setValue={setName} />
                             <InputField label="Amount" placeholder="$0.00" value={amount} setValue={setAmount} />
-                            <Select value="Income" onValueChange={(value) => setCategory(value)}>
-                                <SelectTrigger
-                                    className="w-full h-12 py-3 pl-4  bg-white border-[1.5px] font-medium border-zinc-200/70 "
-                                    style={{ boxShadow: "0px 4px 0px 0 rgba(0,0,0,0.05)" }}
-                                >
-                                    <SelectValue placeholder="Select Category" className="" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    {categories.map(
-                                        (cat) =>
-                                            cat.name === "Income" && (
-                                                <SelectItem key={cat.id + cat.emoji} value={cat.id}>
-                                                    {cat.name}
-                                                </SelectItem>
-                                            )
-                                    )}
-                                </SelectContent>
-                            </Select>
 
                             <DatePicker date={date} setDate={setDate} />
 
