@@ -90,14 +90,15 @@ function BudgetCardWithProgressBar(props: BudgetProps) {
                         <DrawerFooter className="max-w-md w-full">
                             {/* <Button className="w-full">Save</Button> */}
                             <InputField label="Category Name" value={name} setValue={setName} />
-                            <InputField label="Budget" value={budget} setValue={setBudget} />
+                            <InputField type="number" label="Budget" value={budget} setValue={setBudget} />
                             <EmojiInputField label="Choose Icon" emoji={emoji} setEmoji={setEmoji} />
                             <button
                                 onClick={() => {
                                     editCategory(name, emoji, budget, props.id);
                                     setOpenDrawer(false);
                                 }}
-                                className="rounded-xl h-12 py-3 mt-8 bg-emerald-700 border-[1.5px] border-emerald-700 text-white font-medium"
+                                disabled={remainingBudget - budget < 0}
+                                className="rounded-xl h-12 py-3 mt-8 bg-emerald-700 border-[1.5px] border-emerald-700 text-white font-medium disabled:grayscale disabled:cursor-not-allowed"
                                 style={{ boxShadow: "0px 4px 0px 0 #03593e" }}
                             >
                                 Edit Category
@@ -122,8 +123,8 @@ function BudgetCardWithProgressBar(props: BudgetProps) {
             <p className=" text-sm text-justify font-medium text-zinc-600">Budget: ${budget}</p>
             <Progress value={percentageSpent} className="shrink-0 mt-2" />
             <div className="flex justify-between w-full text-stone-500 text-sm mt-2">
-                <div className="">${props.spent.toFixed(2)}</div>
-                <div className="">${budget.toFixed(2)}</div>
+                <div className="">${Number(props.spent).toFixed(2)}</div>
+                <div className="">${Number(budget).toFixed(2)}</div>
             </div>
         </div>
     );
@@ -181,7 +182,9 @@ function BudgetCardWithoutProgressBar(props: BudgetProps) {
                                     </div>
                                     <div className="text-center">
                                         <div className="text-base font-semibold  text-black">Remaining Budget</div>
-                                        <div className="text-base  text-black">{remainingBudget}</div>
+                                        <div className="text-base  text-black">
+                                            {remainingBudget + Number(props.budget) - budget}
+                                        </div>
                                     </div>
                                 </div>
                             </DrawerDescription>
@@ -189,14 +192,15 @@ function BudgetCardWithoutProgressBar(props: BudgetProps) {
                         <DrawerFooter className="max-w-md w-full">
                             {/* <Button className="w-full">Save</Button> */}
                             <InputField label="Category Name" value={name} setValue={setName} />
-                            <InputField label="Budget" value={budget} setValue={setBudget} />
+                            <InputField label="Budget" type="number" value={budget} setValue={setBudget} />
                             <EmojiInputField label="Choose Icon" emoji={emoji} setEmoji={setEmoji} />
                             <button
                                 onClick={() => {
                                     editCategory(name, emoji, budget, props.id);
                                     setOpenDrawer(false);
                                 }}
-                                className="rounded-xl h-12 py-3 mt-8 bg-emerald-700 border-[1.5px] border-emerald-700 text-white font-medium"
+                                disabled={remainingBudget + Number(props.budget) - budget < 0}
+                                className="rounded-xl h-12 py-3 mt-8 bg-emerald-700 border-[1.5px] border-emerald-700 text-white font-medium disabled:grayscale disabled:cursor-not-allowed"
                                 style={{ boxShadow: "0px 4px 0px 0 #03593e" }}
                             >
                                 Edit Category

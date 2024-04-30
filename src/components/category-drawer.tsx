@@ -20,6 +20,7 @@ export function CategoryDrawer({ open, children }: { open?: boolean; children: R
     const [budget, setBudget] = useState(0);
     const [emoji, setEmoji] = useState("");
     const [totalBudget, setTotalBudget] = useState(0);
+    const [remainingBudget, setRemainingBudget] = useState(0);
 
     const [addCategory, income, savings, categories] = useBudgetStore((s) => [
         s.addCategory,
@@ -30,10 +31,13 @@ export function CategoryDrawer({ open, children }: { open?: boolean; children: R
 
     useEffect(() => {
         const totalBudget = categories.reduce((prev, current) => {
-            return prev + current.budget;
+            console.log(Number(current.budget) + prev);
+            return prev + Number(current.budget);
         }, 0);
+
+        setRemainingBudget(Number(income) - Number(savings) - totalBudget);
         setTotalBudget(totalBudget);
-    }, []);
+    }, [budget, categories]);
     return (
         <Drawer>
             <DrawerTrigger className="w-full" asChild>
@@ -46,13 +50,11 @@ export function CategoryDrawer({ open, children }: { open?: boolean; children: R
                         <div className="flex justify-evenly my-3">
                             <div className="text-center">
                                 <p className="text-base font-semibold  text-black">Total Budget</p>
-                                <p className="text-base  text-black">{Number(income) + Number(savings)}</p>
+                                <p className="text-base  text-black">{totalBudget}</p>
                             </div>
                             <div className="text-center">
                                 <p className="text-base font-semibold  text-black">Remaining Budget</p>
-                                <p className="text-base  text-black">
-                                    {Number(income) + Number(savings) - totalBudget - budget}
-                                </p>
+                                <p className="text-base  text-black">{remainingBudget + budget}</p>
                             </div>
                         </div>
                     </DrawerDescription>
@@ -60,7 +62,7 @@ export function CategoryDrawer({ open, children }: { open?: boolean; children: R
                 <DrawerFooter className="max-w-md w-full">
                     {/* <Button className="w-full">Save</Button> */}
                     <InputField label="Category Name" value={name} />
-                    <InputField label="Budget" value={budget} />
+                    <InputField type="number" label="Budget" value={budget} setValue={setBudget} />
                     <EmojiInputField label="Choose Icon" emoji={emoji} setEmoji={setEmoji} />
                     <button
                         onClick={() => addCategory(name, emoji, budget)}

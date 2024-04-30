@@ -157,7 +157,7 @@ export default function Page() {
                                 </div>
                                 <div className="text-center">
                                     <div className="text-base font-semibold  text-black">Remaining Budget</div>
-                                    <div className="text-base  text-black">{remainingBudget}</div>
+                                    <div className="text-base  text-black">{remainingBudget - budget}</div>
                                 </div>
                             </div>
                         </DrawerDescription>
@@ -165,7 +165,7 @@ export default function Page() {
                     <DrawerFooter className="max-w-md w-full">
                         {/* <Button className="w-full">Save</Button> */}
                         <InputField label="Category Name" value={name} setValue={setName} />
-                        <InputField label="Budget" value={budget} setValue={setBudget} />
+                        <InputField type="number" label="Budget" value={budget} setValue={setBudget} />
                         <EmojiInputField label="Choose Icon" emoji={emoji} setEmoji={setEmoji} />
                         <button
                             onClick={() => {
@@ -175,7 +175,8 @@ export default function Page() {
                                 setBudget(0);
                                 setEmoji("");
                             }}
-                            className="rounded-xl h-12 py-3 mt-8 bg-emerald-700 border-[1.5px] border-emerald-700 text-white font-medium"
+                            disabled={remainingBudget - budget < 0}
+                            className="rounded-xl h-12 py-3 mt-8 bg-emerald-700 border-[1.5px] border-emerald-700 text-white font-medium disabled:grayscale disabled:cursor-not-allowed"
                             style={{ boxShadow: "0px 4px 0px 0 #03593e" }}
                         >
                             Create Category
