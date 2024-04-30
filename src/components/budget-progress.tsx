@@ -53,13 +53,13 @@ function BudgetCardWithProgressBar(props: BudgetProps) {
 
     useEffect(() => {
         const totalBudget = categories.reduce((prev, current) => {
-            console.log(Number(current.budget) + prev);
             return prev + Number(current.budget);
         }, 0);
 
         setRemainingBudget(Number(income) - Number(savings) - totalBudget);
         setTotalBudget(totalBudget);
     }, [budget, categories]);
+    console.log(remainingBudget + Number(props.budget) - budget);
     return (
         <div
             className="bg-white rounded-md border-zinc-200/70 border  w-56 h-[162px] p-[15px] flex flex-col"
@@ -78,11 +78,13 @@ function BudgetCardWithProgressBar(props: BudgetProps) {
                                 <div className="flex justify-evenly my-3">
                                     <div className="text-center">
                                         <div className="text-base font-semibold  text-black">Total Budget</div>
-                                        <div className="text-base  text-black">{Number(income) - Number(savings)}</div>
+                                        <div className="text-base  text-black">{totalBudget}</div>
                                     </div>
                                     <div className="text-center">
                                         <div className="text-base font-semibold  text-black">Remaining Budget</div>
-                                        <div className="text-base  text-black">{remainingBudget}</div>
+                                        <div className="text-base  text-black">
+                                            {remainingBudget + Number(props.budget) - budget}
+                                        </div>
                                     </div>
                                 </div>
                             </DrawerDescription>
@@ -152,7 +154,6 @@ function BudgetCardWithoutProgressBar(props: BudgetProps) {
 
     useEffect(() => {
         const totalBudget = categories.reduce((prev, current) => {
-            console.log(Number(current.budget) + prev);
             return prev + Number(current.budget);
         }, 0);
 
