@@ -27,13 +27,17 @@ export default function Dashboard() {
 
     const expenseTransactions = transactions.filter((transaction) => transaction.type === "Expense");
 
+    const getCategory = (id: string) => categories.find((c) => c.id === id);
+
     const latestTransaction = expenseTransactions[expenseTransactions.length - 1];
     let totalSpending = 0;
 
     const categoryTotals: Record<string, number> = expenseTransactions.reduce(
         (totals: Record<string, number>, transactions) => {
             const { category, amount } = transactions;
-            totals[category] = (totals[category] || 0) + amount;
+            const categoryName = getCategory(category)?.name ?? "";
+            totals[categoryName] = (totals[categoryName] || 0) + amount;
+            console.log(transactions, totals);
             return totals;
         },
         {}
@@ -82,7 +86,7 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="container h-full bg-[#FAF8F5] p-8">
+        <div className="container min-h-full bg-[#FAF8F5] p-8">
             <div className="">
                 {/* Pie Chart */}
                 <div className=" flex gap-6">
@@ -106,7 +110,7 @@ export default function Dashboard() {
                         {latestTransaction && (
                             <RecentTransaction
                                 name={latestTransaction.name}
-                                category={latestTransaction.category}
+                                category={getCategory(latestTransaction.category)?.name ?? ""}
                                 cost={latestTransaction.amount}
                             />
                         )}

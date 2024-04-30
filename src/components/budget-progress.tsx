@@ -62,7 +62,7 @@ function BudgetCardWithProgressBar(props: BudgetProps) {
     }, [budget, categories]);
     return (
         <div
-            className="bg-[#FAFAFA] rounded-md border-zinc-200/70 border  w-56 h-[162px] p-[15px] flex flex-col"
+            className="bg-white rounded-md border-zinc-200/70 border  w-56 h-[162px] p-[15px] flex flex-col"
             style={{ boxShadow: "0px 4px 0px 0 rgba(0,0,0,0.05)" }}
         >
             <div className=" flex justify-between">
@@ -162,7 +162,7 @@ function BudgetCardWithoutProgressBar(props: BudgetProps) {
 
     return (
         <div
-            className="bg-[#FAFAFA] rounded-md border-zinc-200/70 border  w-56 h-[162px] p-[15px] flex flex-col"
+            className="bg-white rounded-md border-zinc-200/70 border  w-56 h-[162px] p-[15px] flex flex-col"
             style={{ boxShadow: "0px 4px 0px 0 rgba(0,0,0,0.05)" }}
         >
             <div className=" flex justify-between">

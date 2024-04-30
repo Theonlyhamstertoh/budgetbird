@@ -49,6 +49,7 @@ const TransactionPage = () => {
         setSelectedMonth((prevMonth) => (prevMonth === 11 ? 0 : prevMonth + 1));
     };
 
+    const getCategory = (id: string) => categories.find((c) => c.id === id);
     useEffect(() => {
         let totalIncome = 0;
         let totalExpense = 0;
@@ -94,7 +95,9 @@ const TransactionPage = () => {
                                             </h3>
                                         </div>
 
-                                        <h4 className=" text-slate-500 font-semibold w-1/6">{transaction.category}</h4>
+                                        <h4 className=" text-slate-500 font-semibold w-1/6">
+                                            {getCategory(transaction.category)?.name ?? ""}
+                                        </h4>
                                         <h4 className="font-medium w-3/6">{transaction.name}</h4>
                                         <h4
                                             className={` font-medium text-end w-1/6 pr-10 ${

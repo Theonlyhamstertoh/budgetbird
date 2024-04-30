@@ -146,7 +146,7 @@ function TransactionsTopBar({ selectedMonth, prevMonth, nextMonth }: Transaction
                                     className="rounded-xl h-12 py-3 my-2 w-full bg-white border-[1.5px] font-medium border-zinc-200"
                                     style={{ boxShadow: "0px 4px 0px 0 rgba(0,0,0,0.05)" }}
                                 >
-                                    Cancel 1{" "}
+                                    Cancel{" "}
                                 </button>
                             </DrawerClose>
                         </DrawerFooter>
