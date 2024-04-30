@@ -82,7 +82,7 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="container bg-[#FAF8F5] p-8">
+        <div className="container h-full bg-[#FAF8F5] p-8">
             <div className="">
                 {/* Pie Chart */}
                 <div className=" flex gap-6">
@@ -91,7 +91,14 @@ export default function Dashboard() {
                         style={{ boxShadow: "0px 6px 0px 0 rgba(0,0,0,0.05)" }}
                     >
                         <h3 className="font-semibold text-stone-700 text-lg">Total Spendings</h3>
-                        <Pie data={data} options={options} />
+                        {expenseTransactions.length !== 0 ? (
+                            <Pie data={data} options={options} />
+                        ) : (
+                            <div className="flex flex-col items-center m-5">
+                                <img src="/hands-balance.png" alt="nothing" />
+                                <p>There is nothing here yet. Add something to continue</p>
+                            </div>
+                        )}
                     </div>
 
                     {/* Top right content */}

@@ -66,7 +66,7 @@ const TransactionPage = () => {
     }, [filteredTransactions]);
 
     return (
-        <div className="container bg-[#FAF8F5] flex flex-col">
+        <div className="container h-full bg-[#FAF8F5] flex flex-col">
             <TransactionsTopBar selectedMonth={selectedMonth} prevMonth={handlePrevMonth} nextMonth={handleNextMonth} />
             <div className="flex justify-between my-5">
                 <OverviewCard icon="/money.png" category="Income" money={income} moneyColor="text-green-500" />
